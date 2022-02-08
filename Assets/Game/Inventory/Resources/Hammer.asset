@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3921d27dd204c068ab9f8b2b76fd461, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: 
+  itemID: 0aa7c8b8-4796-42aa-89d0-9d100ea67d7b
+  displayName: Hammer
+  description: A silver hammer.
+  icon: {fileID: 21300000, guid: 79b47bb526f2f407ea5a899bf93524fc, type: 3}
+  pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
+  stackable: 1
+  price: 1099.25
+  category: 2
+  allowedEquipLocation: 1

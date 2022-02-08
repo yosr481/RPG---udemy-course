@@ -1,0 +1,383 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6943542558014621633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: bf3049b0-d2fc-46cb-bee3-a678f7002377
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: You don't look like you're from around here.
+  children:
+  - 9e581567-e29b-451b-b918-546351b2ff16
+  - dac4c02d-c06b-4562-b1d3-f1d8d96412ad
+  - 78d95302-0a0b-4095-82d6-23d8538402a6
+  - d8294d94-4005-4a60-baee-c5df03435dd4
+  rect:
+    serializedVersion: 2
+    x: 60
+    y: 152
+    width: 200
+    height: 85
+  onEnterAction: TestRootEntry
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-6187139868468767008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 4a83c17c-8b22-44ac-9c73-8f937f935bbd
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I haven't heard about any trouble.
+  children:
+  - 5bae8200-4b9a-4cca-b7d8-04a4f6fcddd5
+  rect:
+    serializedVersion: 2
+    x: 851
+    y: 310
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-6177599648331844114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 8f6345c6-0e78-4d51-9f68-3168a98aae35
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: You liar! There ain't no Mr. Bowler, I made him up!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1011
+    y: 69
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: Attack
+  condition:
+    and: []
+--- !u!114 &-4235911190005925334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 78d95302-0a0b-4095-82d6-23d8538402a6
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I came here from Newton.
+  children:
+  - 7126e64c-28b7-4914-a665-c9d28e3bccc6
+  rect:
+    serializedVersion: 2
+    x: 325
+    y: 208
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: HasQuest
+        parameters:
+        - Find a food to eat together
+        negate: 1
+--- !u!114 &-3819614846378270221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 71bfba54-ebeb-401a-a387-eb8e42a5b163
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Mr. Bowler is a good friend of mine!
+  children:
+  - 8f6345c6-0e78-4d51-9f68-3168a98aae35
+  rect:
+    serializedVersion: 2
+    x: 801
+    y: 69
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-1974053725500572513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: d1e3d181-5a74-4de6-8ebc-d8726314a527
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Oh really? Then you must know Mr. Bowler.
+  children:
+  - 71bfba54-ebeb-401a-a387-eb8e42a5b163
+  - 9a8d9709-4e36-4baf-bb9f-a80a9361d9ff
+  rect:
+    serializedVersion: 2
+    x: 576
+    y: 130
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-1516836397187316106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: d8294d94-4005-4a60-baee-c5df03435dd4
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: You just told me you're hungry!
+  children:
+  - 2ba8c2cc-77a1-4d7a-be14-af4d91fbb10f
+  rect:
+    serializedVersion: 2
+    x: 320
+    y: 362
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: HasQuest
+        parameters:
+        - Find a food to eat together
+        negate: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabf79619ece4b25b1eb4fab11266954, type: 3}
+  m_Name: New in Town
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -6943542558014621633}
+  - {fileID: 575757080062848942}
+  - {fileID: -4235911190005925334}
+  - {fileID: -1974053725500572513}
+  - {fileID: -3819614846378270221}
+  - {fileID: 9193553089867062074}
+  - {fileID: -6177599648331844114}
+  - {fileID: 6908420128007649183}
+  - {fileID: 3432578330678249356}
+  - {fileID: -6187139868468767008}
+  - {fileID: 4662646956677184905}
+  - {fileID: -1516836397187316106}
+  - {fileID: 6099456493378635781}
+--- !u!114 &575757080062848942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: dac4c02d-c06b-4562-b1d3-f1d8d96412ad
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I've lived here all my life!
+  children:
+  - d1e3d181-5a74-4de6-8ebc-d8726314a527
+  rect:
+    serializedVersion: 2
+    x: 328
+    y: 69
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: HasQuest
+        parameters:
+        - Find a food to eat together
+        negate: 1
+--- !u!114 &3432578330678249356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 7126e64c-28b7-4914-a665-c9d28e3bccc6
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Newton, eh? I heard there's trouble brewing down there.
+  children:
+  - 4a83c17c-8b22-44ac-9c73-8f937f935bbd
+  - bffb27cb-4a6c-4ed1-b473-880ff01daa62
+  rect:
+    serializedVersion: 2
+    x: 564
+    y: 302
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &4662646956677184905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: bffb27cb-4a6c-4ed1-b473-880ff01daa62
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Did I say Newton? I'm actually from Springville.
+  children:
+  - d1e3d181-5a74-4de6-8ebc-d8726314a527
+  rect:
+    serializedVersion: 2
+    x: 841
+    y: 423
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &6099456493378635781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 2ba8c2cc-77a1-4d7a-be14-af4d91fbb10f
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Did i? that was you? Ok then. where is the food?
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 551
+    y: 450
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &6908420128007649183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 5bae8200-4b9a-4cca-b7d8-04a4f6fcddd5
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Don't you worry about it. Say,do you have something to eat? I'm starving.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1114
+    y: 183
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: GiveQuest
+  condition:
+    and: []
+--- !u!114 &9193553089867062074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d99ff63a2de4ece9c41c0468b277f3a, type: 3}
+  m_Name: 9a8d9709-4e36-4baf-bb9f-a80a9361d9ff
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Who?
+  children:
+  - 5bae8200-4b9a-4cca-b7d8-04a4f6fcddd5
+  rect:
+    serializedVersion: 2
+    x: 800
+    y: 176
+    width: 200
+    height: 85
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []

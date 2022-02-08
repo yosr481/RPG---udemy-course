@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279e5b692ccf39e4f8ed621d5aa83954, type: 3}
+  m_Name: Find a food to eat together
+  m_EditorClassIdentifier: 
+  objectives:
+  - reference: 0
+    description: Find the house of food
+  rewards:
+  - number: 5
+    item: {fileID: 11400000, guid: a71325782ded5a346a5174166a7843ec, type: 2}
+  - number: 2
+    item: {fileID: 11400000, guid: e1785fdd0bc98804e8158f2f0f7795c0, type: 2}
