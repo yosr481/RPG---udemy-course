@@ -6,6 +6,6 @@ namespace RPG.Stats
     public enum CharacterClass
     {
         Player,
-        Enenmy
+        Enemy
     }
 }

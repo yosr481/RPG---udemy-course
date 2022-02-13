@@ -14,10 +14,7 @@ namespace RPG.Attributes
         [SerializeField] UnityEvent onDie;
 
         [System.Serializable]
-        public class TakeDamageEvent : UnityEvent<float>
-        {
-
-        }
+        public class TakeDamageEvent : UnityEvent<float> { }
         
         LazyValue<float> healthPoints;
 
@@ -67,6 +64,11 @@ namespace RPG.Attributes
             {
                 takeDamage.Invoke(damage);
             }
+        }
+        
+        public void Heal(float healthChange)
+        {
+            healthPoints.Value = Mathf.Min(healthPoints.Value + healthChange, GetMaxHealthPoints());
         }
 
         public float GetHealthPoints()
@@ -126,5 +128,6 @@ namespace RPG.Attributes
                 Die();
             }
         }
+        
     }
 }

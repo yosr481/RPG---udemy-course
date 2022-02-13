@@ -95,8 +95,8 @@ namespace RPG.Inventories
         [Serializable]
         private struct DockedItemRecord
         {
-            public string itemID;
-            public int number;
+            public string ItemID;
+            public int Number;
         }
         
         public object CaptureState()
@@ -105,8 +105,8 @@ namespace RPG.Inventories
             foreach (var pair in dockedItems)
             {
                 var record = new DockedItemRecord();
-                record.itemID = pair.Value.item.GetItemID();
-                record.number = pair.Value.number;
+                record.ItemID = pair.Value.item.GetItemID();
+                record.Number = pair.Value.number;
                 state[pair.Key] = record;
             }
 
@@ -118,7 +118,7 @@ namespace RPG.Inventories
             var stateDict = (Dictionary<int, DockedItemRecord>) state;
             foreach (var pair in stateDict)
             {
-                AddAction(InventoryItem.GetFromID(pair.Value.itemID), pair.Key, pair.Value.number);
+                AddAction(InventoryItem.GetFromID(pair.Value.ItemID), pair.Key, pair.Value.Number);
             }
         }
     }

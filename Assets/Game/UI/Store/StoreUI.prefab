@@ -727,6 +727,14 @@ PrefabInstance:
       propertyPath: m_text
       value: All
       objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
 --- !u!224 &8580271520224687274 stripped
@@ -1087,7 +1095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6305197106630705966, guid: 56307fd55bf966041bede2879d031ca2, type: 3}
       propertyPath: m_Size
-      value: 0.64655817
+      value: 0.85780317
       objectReference: {fileID: 0}
     - target: {fileID: 6305197106630705966, guid: 56307fd55bf966041bede2879d031ca2, type: 3}
       propertyPath: m_Value
@@ -1321,6 +1329,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Switch to Selling
       objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
 --- !u!114 &1887984227808963256 stripped
@@ -1437,6 +1453,14 @@ PrefabInstance:
     - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
       propertyPath: m_text
       value: Armour
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
@@ -1573,6 +1597,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Buy
       objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
 --- !u!224 &4636514157269010419 stripped
@@ -1689,6 +1721,14 @@ PrefabInstance:
     - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
       propertyPath: m_text
       value: Potions
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
@@ -2133,6 +2173,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
 --- !u!224 &4402931400709924733 stripped
@@ -2345,6 +2393,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Special
       objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
 --- !u!1 &8980718292119239347 stripped
@@ -2455,6 +2511,14 @@ PrefabInstance:
     - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
       propertyPath: m_text
       value: Ability
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394127669985356993, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}

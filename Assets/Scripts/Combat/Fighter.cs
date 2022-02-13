@@ -87,6 +87,11 @@ namespace RPG.Combat
             return target;
         }
 
+        public Transform GetHandTransform(bool isRightHand)
+        {
+            return isRightHand ? rightHandPosition : leftHandPosition;
+        }
+
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);

@@ -3,6 +3,7 @@ using RPG.Movement;
 using RPG.Combat;
 using RPG.Attributes;
 using System;
+using RPG.Inventories;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
 
@@ -10,20 +11,22 @@ namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
-        Mover mover;
-        Health health;
+        private Mover mover;
+        private Health health;
+        private ActionStore actionStore;
 
         [System.Serializable]
-        struct CursorMapping
+        private struct CursorMapping
         {
-            public CursorType cursorType;
-            public Texture2D texture;
-            public Vector2 hotspot;
+            public CursorType CursorType;
+            public Texture2D Texture;
+            public Vector2 Hotspot;
         }
 
-        [SerializeField] CursorMapping[] cursorMappings = null;
-        [SerializeField] float maxNavmeshProjectionDistance = 1;
-        [SerializeField] float raycastRadius = 1;
+        [SerializeField] private CursorMapping[] cursorMappings = null;
+        [SerializeField] private float maxNavmeshProjectionDistance = 1;
+        [SerializeField] private float raycastRadius = 1;
+        [SerializeField] private int numberOfAbilities = 2;
 
         private bool isDraggingUI = false;
 
@@ -32,6 +35,7 @@ namespace RPG.Control
         {
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
+            actionStore = GetComponent<ActionStore>();
         }
 
         // Update is called once per frame
@@ -43,6 +47,7 @@ namespace RPG.Control
                 SetCursor(CursorType.None);
                 return;
             }
+            UseAbilities();
             if (InteractWithComponent()) return;
             if (InteractWithMovement()) return;
             SetCursor(CursorType.None);
@@ -100,6 +105,18 @@ namespace RPG.Control
             return isDraggingUI;
         }
 
+        private void UseAbilities()
+        {
+            for (int i = 0; i < numberOfAbilities; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                {
+                    
+                    actionStore.Use(i, gameObject);
+                }
+            }
+        }
+        
         private bool InteractWithComponent()
         {
             RaycastHit[] hits = RaycastAllSorted();
@@ -133,14 +150,14 @@ namespace RPG.Control
         private void SetCursor(CursorType type)
         {
             CursorMapping mapping = GetCursorMapping(type);
-            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+            Cursor.SetCursor(mapping.Texture, mapping.Hotspot, CursorMode.Auto);
         }
 
         private CursorMapping GetCursorMapping(CursorType type)
         {
             foreach (CursorMapping mapping in cursorMappings)
             {
-                if(mapping.cursorType == type)
+                if(mapping.CursorType == type)
                 {
                     return mapping;
                 }
@@ -149,7 +166,7 @@ namespace RPG.Control
             return cursorMappings[0];
         }
 
-        private static Ray GetMouseRay()
+        public static Ray GetMouseRay()
         {
             return Camera.main.ScreenPointToRay(Input.mousePosition);
         }

@@ -1,6 +1,7 @@
 ﻿using RPG.Attributes;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace RPG.Combat
 {
@@ -10,12 +11,13 @@ namespace RPG.Combat
         [SerializeField] GameObject hitEffect = null;
         [SerializeField] float maxLifetime = 10;
         [SerializeField] GameObject[] hitToDestroy = null;
-        [SerializeField] float maxDestroyImact = 0.2f;
+        [FormerlySerializedAs("maxDestroyImact")][SerializeField] float maxDestroyImpact = 0.2f;
         [SerializeField] UnityEvent onHit;
 
-        Health target = null;
-        GameObject investigator;
-        float damage = 0;
+        private Health target = null;
+        private Vector3 targetPoint;
+        private GameObject investigator;
+        private float damage = 0;
 
         private void Start()
         {
@@ -24,22 +26,40 @@ namespace RPG.Combat
 
         private void Update()
         {
-            if (target == null) return;
+            if (target != null && !target.IsDead())
+            {
+                transform.LookAt(GetAimLocation());
+            }
             
             transform.Translate(Vector3.forward * projectileSpeed * Time.deltaTime);
         }
 
-        public void SetTarget(Health _target, GameObject _investigator, float _damage)
+        public void SetTarget(Health target, GameObject investigator, float damage)
         {
-            target = _target;
-            damage = _damage;
-            investigator = _investigator;
+            SetTarget(investigator, damage, target);
+        }
+
+        public void SetTarget(Vector3 targetPoint, GameObject investigator, float damage)
+        {
+            SetTarget(investigator,damage, null, targetPoint);
+        }
+
+        public void SetTarget(GameObject investigator, float damage, Health target = null, Vector3 targetPoint = default)
+        {
+            this.target = target;
+            this.targetPoint = targetPoint;
+            this.damage = damage;
+            this.investigator = investigator;
 
             Destroy(gameObject, maxLifetime);
         }
 
         private Vector3 GetAimLocation()
         {
+            if (target == null)
+            {
+                return targetPoint;
+            }
             CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
             if (targetCapsule == null) return target.transform.position;
             return target.transform.position + Vector3.up * targetCapsule.height / 2;
@@ -47,10 +67,13 @@ namespace RPG.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<Health>() != target) return;
-            if (target.IsDead()) return;
+            var health = other.GetComponent<Health>();
+            if (target != null && health != target) return;
+            if(health == null || health.IsDead()) return;
+            if(other.gameObject == investigator) return;
+            
             onHit.Invoke();
-            target.TakeDamage(investigator, damage);
+            health.TakeDamage(investigator, damage);
             projectileSpeed = 0;
 
             if(hitEffect != null)
@@ -63,7 +86,7 @@ namespace RPG.Combat
                 Destroy(toDestroy);
             }
 
-            Destroy(gameObject, maxDestroyImact);
+            Destroy(gameObject, maxDestroyImpact);
         }
     }
 }

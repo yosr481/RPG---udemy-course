@@ -1,17 +1,22 @@
+using System;
+using RPG.Abilities;
 using RPG.Inventories;
 using RPG.UI.Dragging;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.UI.Inventories
 {
     public class ActionSlotUI : MonoBehaviour,IItemHolder, IDragContainer<InventoryItem>
     {
         // CONFIG DATA
-        [SerializeField] InventoryItemIcon icon = null;
-        [SerializeField] int index;
-        
-        ActionItem item;
-        ActionStore actionStore;
+        [SerializeField] private InventoryItemIcon icon = null;
+        [SerializeField] private int index;
+        [SerializeField] private Image cooldownOverlay = null;
+
+        private ActionItem item;
+        private ActionStore actionStore;
+        private CooldownStore cooldownStore;
 
         // PUBLIC
 
@@ -19,12 +24,18 @@ namespace RPG.UI.Inventories
         {
             var player = GameObject.FindGameObjectWithTag("Player");
             actionStore = player.GetComponent<ActionStore>();
+            cooldownStore = player.GetComponent<CooldownStore>();
             actionStore.StoreUpdated += RedrawUI;
         }
 
         private void Start()
         {
             RedrawUI();
+        }
+
+        private void Update()
+        {
+            cooldownOverlay.fillAmount = cooldownStore.GetFractionRemaining(GetItem());
         }
 
         public void AddItems(InventoryItem item, int number)

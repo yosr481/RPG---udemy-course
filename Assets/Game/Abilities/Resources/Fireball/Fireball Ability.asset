@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3418dd1450cd4eb09e029222ded8e9be, type: 3}
+  m_Name: Fireball Ability
+  m_EditorClassIdentifier: 
+  itemID: f2295969-2844-42a9-b3d7-3dbfa9faaf27
+  displayName: Fireball Cast
+  description: Throw a Fireball towards the direction of the mouse.
+  icon: {fileID: 21300000, guid: 7f09d3082a97a42e5a902edd5a6e37a4, type: 3}
+  pickup: {fileID: 0}
+  stackable: 1
+  price: 10
+  category: 2
+  isConsumable: 0
+  targetingStrategy: {fileID: 11400000, guid: 1c8a2008f2f1f7f42a048ac2d2826875, type: 2}
+  filterStrategies: []
+  effectStrategies:
+  - {fileID: 11400000, guid: 9342cf47d6cf17f44ac629be0a8fc781, type: 2}
+  - {fileID: 11400000, guid: cf17277cef4aaf347ad096a3bdf8299c, type: 2}
+  - {fileID: 11400000, guid: f88ab09af96684241af20a263f934d0d, type: 2}
+  cooldownTime: 0.6
+  manaCost: 30
