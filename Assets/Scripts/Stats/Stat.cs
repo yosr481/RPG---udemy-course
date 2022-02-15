@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace RPG.Stats
+﻿namespace RPG.Stats
 {
     public enum Stat
     {
@@ -11,6 +7,8 @@ namespace RPG.Stats
         ExperienceToLevelUp,
         Damage,
         Mana,
-        ManaRegeneration
+        ManaRegeneration,
+        TotalTraitPoints,
+        BuyingDiscountPercentage
     }
 }

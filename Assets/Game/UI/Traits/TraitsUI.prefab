@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8437793888666055585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5281255559412923775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafce70a01814c35a657e2cdbb29a9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unassignedPointsText: {fileID: 3203806357230683767}
+  commitButton: {fileID: 308613374190975778}
 --- !u!1 &5330386098640974606
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +962,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1961186361739334782, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Commit Button
       objectReference: {fileID: 0}
     - target: {fileID: 8252756201085610399, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
       propertyPath: m_Pivot.x
@@ -1048,6 +1062,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+--- !u!114 &308613374190975778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3642637313030434227, guid: 5d3b76f84239aad41b217beee99d982f, type: 3}
+  m_PrefabInstance: {fileID: 3946654573981423249}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4294705704499691006
 PrefabInstance:
   m_ObjectHideFlags: 0

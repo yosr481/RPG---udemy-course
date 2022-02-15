@@ -62,27 +62,25 @@ namespace RPG.Stats
             Instantiate(levelUpParticles, transform);
         }
 
-        public float GetStat(Stat stat)
-        {
-            return progression.GetStat(stat, characterClass, GetLevel()) + GetAdditiveModifier(stat);
-        }
+        public float GetStat(Stat stat) => (GetBaseStat(stat) + GetAdditiveModifier(stat))
+                   * (1 + GetPercentageModifier(stat) / 100);
+        
+        private float GetBaseStat(Stat stat) => progression.GetStat(stat, characterClass, GetLevel());
 
-        public int GetLevel()
-        {
-            return currentLevel.Value;
-        }
+        public int GetLevel() => currentLevel.Value;
 
         private float GetAdditiveModifier(Stat stat)
         {
             if (!shouldUseModifiers) return 0;
-            return GetComponents<IModifierProvider>().SelectMany(provider => provider.GetAdditiveModifier(stat)).Sum();
+            return GetComponents<IModifierProvider>().
+                SelectMany(provider => provider.GetAdditiveModifier(stat)).Sum();
         }
         
         private float GetPercentageModifier(Stat stat)
         {
             if (!shouldUseModifiers) return 0;
-
-            return GetComponents<IModifierProvider>().SelectMany(provider => provider.GetPercentageModifier(stat)).Sum();
+            return GetComponents<IModifierProvider>().
+                SelectMany(provider => provider.GetPercentageModifier(stat)).Sum();
         }
 
         private int CalculateLevel()

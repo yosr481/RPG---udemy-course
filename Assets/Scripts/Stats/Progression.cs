@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -8,18 +6,21 @@ namespace RPG.Stats
     [CreateAssetMenu(fileName = "Progression", menuName = "Stats/New Progression")]
     public class Progression : ScriptableObject
     {
-        [SerializeField] ProgressionCharacterClass[] progressionCharacterClasses = null;
+        [SerializeField] private ProgressionCharacterClass[] progressionCharacterClasses = null;
 
-        Dictionary<CharacterClass, Dictionary<Stat, float[]>> lookupTable = null;
+        private Dictionary<CharacterClass, Dictionary<Stat, float[]>> lookupTable = null;
 
         public float GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             BuildLookup();
+            if (!lookupTable[characterClass].ContainsKey(stat)) return 0;
+            
             float[] levels = lookupTable[characterClass][stat];
 
+            if (levels.Length == 0) return 0;
             if(levels.Length < level)
             {
-                return 0;
+                return levels[levels.Length - 1];
             }
 
             return levels[level - 1];

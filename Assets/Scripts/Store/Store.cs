@@ -6,13 +6,15 @@ using RPG.Inventories;
 using RPG.Saving;
 using RPG.Stats;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Shops
 {
     public class Store : MonoBehaviour, IRaycastable, ISaveable
     {
         [SerializeField] private string storeName;
-        [SerializeField, Range(0,100)] private float sellingPrecentage = 80f;
+        [SerializeField, Range(0,100)] private float sellingPercentage = 80f;
+        [SerializeField] private float maximumBarterDiscount = 80f;
         [SerializeField] private StockItemConfig[] stockConfig;
         [Serializable]
         private class StockItemConfig
@@ -332,17 +334,24 @@ namespace RPG.Shops
                 {
                     if (!prices.ContainsKey(config.Item))
                     {
-                        prices[config.Item] = config.Item.GetPrice();
+                        prices[config.Item] = config.Item.GetPrice() * GetBarterDiscount();
                     }
 
                     prices[config.Item] *= 1 - config.BuyingDiscountPercentage / 100;
                 }
                 else
                 {
-                    prices[config.Item] = config.Item.GetPrice() * (sellingPrecentage / 100);
+                    prices[config.Item] = config.Item.GetPrice() * (sellingPercentage / 100);
                 }
             }
             return prices;
+        }
+        
+        private float GetBarterDiscount()
+        {
+            var baseStats = currentShopper.GetComponent<BaseStats>();
+            float discount = baseStats.GetStat(Stat.BuyingDiscountPercentage);
+            return 1 - Mathf.Min(discount, maximumBarterDiscount) / 100;
         }
 
         private IEnumerable<StockItemConfig> GetAvailableConfigs()

@@ -13,27 +13,25 @@ namespace RPG.UI.Traits
 		[SerializeField] private Button minusButton;
 		[SerializeField] private Button plusButton;
 
-		private int value = 0;
+		private TraitStore traitStore;
 
 		private void Start()
 		{
+			traitStore = GameObject.FindGameObjectWithTag("Player").GetComponent<TraitStore>();
 			minusButton.onClick.AddListener(() => Allocate(-1));
 			plusButton.onClick.AddListener(() => Allocate(+1));
 		}
 
 		private void Update()
 		{
-			minusButton.interactable = value > 0;
-			traitValueText.text = value.ToString();
+			minusButton.interactable = traitStore.CanAssignPoints(trait, -1);
+			plusButton.interactable = traitStore.CanAssignPoints(trait, +1);
+			traitValueText.text = traitStore.GetProposedPoints(trait).ToString();
 		}
 
 		public void Allocate(int points)
 		{
-			value += points;
-			if (value < 0)
-			{
-				value = 0;
-			}
+			traitStore.AssignPoints(trait, points);
 		}
 	}
 }
