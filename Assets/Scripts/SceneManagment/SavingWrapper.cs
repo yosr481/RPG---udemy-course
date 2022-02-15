@@ -40,6 +40,11 @@ namespace RPG.SceneManagment
             StartCoroutine(LoadMenuScene());
         }
 
+        public void DeleteSave(string saveFile)
+        {
+            GetComponent<SavingSystem>().Delete(saveFile);
+        }
+
         private void SetCurrentSave(string saveFile)
         {
             PlayerPrefs.SetString(CurrentSaveKey, saveFile);

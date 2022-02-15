@@ -12,7 +12,7 @@ namespace RPG.Attributes
 
         void Update()
         {
-            if(Mathf.Approximately(health.GetFracction(), 0) || Mathf.Approximately(health.GetFracction(), 1))
+            if(Mathf.Approximately(health.GetFraction(), 0) || Mathf.Approximately(health.GetFraction(), 1))
             {
                 rootCanvas.enabled = false;
                 return;
@@ -20,7 +20,7 @@ namespace RPG.Attributes
 
             rootCanvas.enabled = true;
 
-            forground.localScale = new Vector3(health.GetFracction(), 1, 1);
+            forground.localScale = new Vector3(health.GetFraction(), 1, 1);
         }
     }
 

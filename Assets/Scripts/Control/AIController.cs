@@ -5,6 +5,7 @@ using RPG.Movement;
 using RPG.Attributes;
 using GameDevTV.Utils;
 using System;
+using UnityEngine.AI;
 
 namespace RPG.Control
 {
@@ -38,6 +39,7 @@ namespace RPG.Control
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
             guardPosition = new LazyValue<Vector3>(GetGuardPosition);
+            guardPosition.ForceInit();
         }
 
         private void Start()
@@ -65,11 +67,22 @@ namespace RPG.Control
             UpdateTimers();
         }
 
-        public void Aggrevate()
+
+        public void Reset()
+        {
+            var agent = GetComponent<NavMeshAgent>();
+            agent.Warp(guardPosition.Value);
+            timeSinceLastSawPlayer = Mathf.Infinity;
+            timeSinceArriveAtWaypoint = Mathf.Infinity;
+            timeSinceAggrevated = Mathf.Infinity;
+            currentWaypointIndex = 0;
+        }
+
+        private void Aggravate()
         {
             timeSinceAggrevated = 0;
         }
-
+        
         private Vector3 GetGuardPosition()
         {
             return transform.position;
@@ -139,7 +152,7 @@ namespace RPG.Control
             {
                 AIController ai = hit.transform.GetComponent<AIController>();
                 if (ai == null) continue;
-                ai.Aggrevate();
+                ai.Aggravate();
             }
         }
 
