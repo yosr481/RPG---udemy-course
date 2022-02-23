@@ -26,7 +26,7 @@ public class EffectController : MonoBehaviour {
 	public List<EffectData> m_kEffectGenList = new List<EffectData>();		///< 特效設定清單.
 	private int m_nNowIndex = 0;
 
-	void Awake()
+	private void Awake()
 	{
 		for (int i = 0; i < m_kEffectGenList.Count; i++) {
 			Invoke ("GenEffect", m_kEffectGenList [i].m_fTimeSec);
@@ -36,7 +36,7 @@ public class EffectController : MonoBehaviour {
 		m_kEffectGenList.Sort (comparer);		///< 依時間排序.
 	}
 
-	void Update()
+	private void Update()
 	{
 		CheckTransfromUpdate ();
 	}
@@ -44,7 +44,7 @@ public class EffectController : MonoBehaviour {
 	/// <summary>
 	/// 特效生成.
 	/// </summary>
-	void GenEffect()
+	private void GenEffect()
 	{
 		EffectData effectData = m_kEffectGenList[m_nNowIndex];
 		if (effectData == null)
@@ -63,7 +63,7 @@ public class EffectController : MonoBehaviour {
 	/// <summary>
 	/// 原生功能更改值.
 	/// </summary>
-	void CheckTransfromUpdate()
+	private void CheckTransfromUpdate()
 	{
 		foreach (Transform tf in transform) {
 			int nIndex = int.Parse (tf.name);

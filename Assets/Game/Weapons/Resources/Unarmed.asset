@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 93f2f435-ee3f-4a70-b104-8b338bae6aa5
   displayName: Unarmed
-  description: Fight with your bare hands.
+  description: 
   icon: {fileID: 21300000, guid: 9f57a8adac99e4526a1986646a3be29a, type: 3}
   pickup: {fileID: 0}
   stackable: 0
+  price: 0
+  category: 0
+  allowedEquipLocation: 0
+  equipCondition:
+    and: []
   EquippedPrefab: {fileID: 2766098287921777655, guid: 976e1839988359145a68f2bf03a25097, type: 3}
   animatorOverride: {fileID: 0}
   weaponDamage: 3
+  percentageBonus: 10
   weaponRange: 2
   isRightHand: 1
   projectile: {fileID: 0}

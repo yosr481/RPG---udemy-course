@@ -7,7 +7,7 @@ namespace RPG.Cinematics
 {
     public class CinematicTrigger : MonoBehaviour
     {
-        bool isTriggered = false;
+        private bool isTriggered = false;
 
         private void OnTriggerEnter(Collider other)
         {

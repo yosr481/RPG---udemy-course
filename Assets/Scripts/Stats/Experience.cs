@@ -6,7 +6,7 @@ namespace RPG.Stats
 {
     public class Experience : MonoBehaviour, ISaveable
     {
-        [SerializeField] float experiencePoint = 0;
+        [SerializeField] private float experiencePoint = 0;
         
         public event Action OnExperienceGained;
         

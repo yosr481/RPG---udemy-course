@@ -26,8 +26,8 @@ namespace RPG.UI.Shops
         {
             filterButtons = GetComponentsInChildren<FilterButtonUI>();
         }
-        
-        void Start()
+
+        private void Start()
         {
             originalTotalTextColor = totalText.color;
             shopper = GameObject.FindGameObjectWithTag("Player").GetComponent<Shopper>();

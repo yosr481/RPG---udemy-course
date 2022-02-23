@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using RPG.Core;
 using RPG.Saving;
 using UnityEngine;
 
 namespace RPG.Inventories
 {
-    public class Equipment : MonoBehaviour, ISaveable
+    public class Equipment : MonoBehaviour, ISaveable, IPredicateEvaluator
     {
         private Dictionary<EquipLocation, EquipableItem> equippedItems = new Dictionary<EquipLocation, EquipableItem>();
 
@@ -35,24 +37,35 @@ namespace RPG.Inventories
 
         public object CaptureState()
         {
-            var equipedItemForSerialization = new Dictionary<EquipLocation, string>();
+            var equippedItemForSerialization = new Dictionary<EquipLocation, string>();
             foreach (var item in equippedItems)
             {
-                equipedItemForSerialization[item.Key] = item.Value.GetItemID();
+                equippedItemForSerialization[item.Key] = item.Value.GetItemID();
             }
 
-            return equipedItemForSerialization;
+            return equippedItemForSerialization;
         }
 
         public void RestoreState(object state)
         {
             equippedItems = new Dictionary<EquipLocation, EquipableItem>();
-            var equipedItemForSerialization = (Dictionary<EquipLocation, string>)state;
-            foreach (var pair in equipedItemForSerialization)
+            var equippedItemForSerialization = (Dictionary<EquipLocation, string>)state;
+            foreach (var pair in equippedItemForSerialization)
             {
                 var item = (EquipableItem) InventoryItem.GetFromID(pair.Value);
                 if (item) equippedItems[pair.Key] = item;
             }
+
+            EquipmentUpdated?.Invoke();
+        }
+        public bool? Evaluate(string predicate, string[] parameters)
+        {
+            if (predicate == "HasItemEquipped")
+            {
+                return equippedItems.Values.Any(item => item.GetItemID() == parameters[0]);
+            }
+
+            return null;
         }
     }
 }

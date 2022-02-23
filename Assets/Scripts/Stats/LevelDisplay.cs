@@ -8,7 +8,7 @@ namespace RPG.Stats
 {
     public class LevelDisplay : MonoBehaviour
     {
-        BaseStats baseStats;
+        private BaseStats baseStats;
 
         private void Awake()
         {

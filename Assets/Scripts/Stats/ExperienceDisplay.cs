@@ -8,7 +8,7 @@ namespace RPG.Stats
 {
     public class ExperienceDisplay : MonoBehaviour
     {
-        Experience experience;
+        private Experience experience;
 
         private void Awake()
         {

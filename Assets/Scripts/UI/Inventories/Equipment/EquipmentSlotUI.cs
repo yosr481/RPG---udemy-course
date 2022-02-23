@@ -6,7 +6,7 @@ namespace RPG.UI.Inventories
 {
     public class EquipmentSlotUI : MonoBehaviour, IItemHolder, IDragContainer<InventoryItem>
     {
-        [SerializeField] InventoryItemIcon icon = null;
+        [SerializeField] private InventoryItemIcon icon = null;
         [SerializeField] private EquipLocation equipLocation;
 
         private Equipment playerEquipment;
@@ -47,7 +47,7 @@ namespace RPG.UI.Inventories
         {
             var equipableItem = item as EquipableItem;
             if (equipableItem == null) return 0;
-            if (equipableItem.GetAllowedEquipLocation() != equipLocation) return 0;
+            if (!equipableItem.CanEquip(equipLocation, playerEquipment)) return 0;
             if (GetItem() != null) return 0;
             return 1;
         }

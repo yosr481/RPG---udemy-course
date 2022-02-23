@@ -6,11 +6,11 @@ namespace RPG.Attributes
 {
     public class HealthBar : MonoBehaviour
     {
-        [SerializeField] Health health;
-        [SerializeField] RectTransform forground;
-        [SerializeField] Canvas rootCanvas = null;
+        [SerializeField] private Health health;
+        [SerializeField] private RectTransform forground;
+        [SerializeField] private Canvas rootCanvas = null;
 
-        void Update()
+        private void Update()
         {
             if(Mathf.Approximately(health.GetFraction(), 0) || Mathf.Approximately(health.GetFraction(), 1))
             {

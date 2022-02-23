@@ -42,7 +42,7 @@ namespace RPG.Dialogue.Editor
 
         private void OnEnable()
         {
-            Selection.selectionChanged += OnSeletedChanged;
+            Selection.selectionChanged += OnSelectedChanged;
             
             nodeStyle = new GUIStyle();
             nodeStyle.normal.background = EditorGUIUtility.Load("node0") as Texture2D;
@@ -55,7 +55,7 @@ namespace RPG.Dialogue.Editor
             playerNodeStyle.border = new RectOffset(12,12,12,12);
         }
 
-        void OnSeletedChanged()
+        private void OnSelectedChanged()
         {
             Dialogue newDialogue = Selection.activeObject as Dialogue;
             if (newDialogue != null)

@@ -5,7 +5,7 @@ namespace RPG.Attributes
 {
 	public class ManaDisplay : MonoBehaviour
 	{
-		Mana mana;
+		private Mana mana;
 
 		private void Awake()
 		{

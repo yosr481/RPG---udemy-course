@@ -9,6 +9,7 @@
         Mana,
         ManaRegeneration,
         TotalTraitPoints,
-        BuyingDiscountPercentage
+        BuyingDiscountPercentage,
+        Defence
     }
 }

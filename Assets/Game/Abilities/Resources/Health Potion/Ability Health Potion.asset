@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: c98bbd13-76ed-4301-8147-d483e3aa8112
   displayName: Health Potion
-  description: Adding 50 health points.
+  description: 
   icon: {fileID: 21300000, guid: 768bd451ab2124c98924895f104d3dce, type: 3}
   pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
   stackable: 1

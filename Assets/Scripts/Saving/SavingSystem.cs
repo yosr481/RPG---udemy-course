@@ -108,7 +108,7 @@ namespace RPG.Saving
             }
         }
 
-        string GetPathFromSaveFile(string saveFile)
+        private string GetPathFromSaveFile(string saveFile)
         {
             return Path.Combine(Application.persistentDataPath, saveFile) + ".sav";
         }

@@ -5,7 +5,7 @@ using System.Collections;
 public class CameraTarget : MonoBehaviour {
 	public Transform m_TargetOffset;
 
-	void LateUpdate(){
+	private void LateUpdate(){
 		transform.LookAt (m_TargetOffset);
 	}
 

@@ -16,10 +16,11 @@ namespace RPG.Inventories
     {
         // CONFIG DATA
         [Tooltip("Allowed size")]
-        [SerializeField] int inventorySize = 16;
+        [SerializeField]
+        private int inventorySize = 16;
 
         // STATE
-        InventorySlot[] slots;
+        private InventorySlot[] slots;
 
         public struct InventorySlot
         {
@@ -88,9 +89,16 @@ namespace RPG.Inventories
         /// Attempt to add the items to the first available slot.
         /// </summary>
         /// <param name="item">The item to add.</param>
+        /// <param name="number">The number of items to add.</param>
         /// <returns>Whether or not the item could be added.</returns>
         public bool AddToFirstEmptySlot(InventoryItem item, int number)
         {
+            foreach (var store in GetComponents<IItemStore>())
+            {
+                number -= store.AddItems(item, number);
+            }
+            if (number <= 0) return true;
+            
             int i = FindSlot(item);
 
             if (i < 0)
@@ -107,7 +115,7 @@ namespace RPG.Inventories
         /// <summary>
         /// Is there an instance of the item in the inventory?
         /// </summary>
-        public bool HasItem(InventoryItem item)
+        private bool HasItem(InventoryItem item)
         {
             for (int i = 0; i < slots.Length; i++)
             {

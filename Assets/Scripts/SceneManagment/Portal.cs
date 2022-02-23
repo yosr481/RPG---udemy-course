@@ -11,17 +11,17 @@ namespace RPG.SceneManagment
 {
     public class Portal : MonoBehaviour
     {
-        enum DestinationIdentifier
+        private enum DestinationIdentifier
         {
             A, B, C, D, E
         }
 
-        [SerializeField] int sceneToLoad = -1;
-        [SerializeField] Transform spawnPoint;
-        [SerializeField] DestinationIdentifier destination;
-        [SerializeField] float fadeOutTime = 1f;
-        [SerializeField] float fadeInTime = 1.5f;
-        [SerializeField] float fadeWaitTime = 0.5f;
+        [SerializeField] private int sceneToLoad = -1;
+        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private DestinationIdentifier destination;
+        [SerializeField] private float fadeOutTime = 1f;
+        [SerializeField] private float fadeInTime = 1.5f;
+        [SerializeField] private float fadeWaitTime = 0.5f;
 
 
         private void OnTriggerEnter(Collider other)
@@ -32,7 +32,7 @@ namespace RPG.SceneManagment
             }
         }
 
-        IEnumerator Transition()
+        private IEnumerator Transition()
         {
             if(sceneToLoad < 0)
             {

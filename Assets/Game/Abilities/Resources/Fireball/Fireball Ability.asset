@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: f2295969-2844-42a9-b3d7-3dbfa9faaf27
   displayName: Fireball Cast
-  description: Throw a Fireball towards the direction of the mouse.
+  description: 
   icon: {fileID: 21300000, guid: 7f09d3082a97a42e5a902edd5a6e37a4, type: 3}
-  pickup: {fileID: 0}
+  pickup: {fileID: 372691274464947082, guid: 5c87e62bf0f93724480482d11aa0bbd1, type: 3}
   stackable: 1
   price: 10
   category: 2
@@ -27,5 +27,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9342cf47d6cf17f44ac629be0a8fc781, type: 2}
   - {fileID: 11400000, guid: cf17277cef4aaf347ad096a3bdf8299c, type: 2}
   - {fileID: 11400000, guid: f88ab09af96684241af20a263f934d0d, type: 2}
-  cooldownTime: 0.6
+  cooldownTime: 0
   manaCost: 30

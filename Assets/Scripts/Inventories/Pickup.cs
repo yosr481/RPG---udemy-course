@@ -9,11 +9,11 @@ namespace RPG.Inventories
     public class Pickup : MonoBehaviour
     {
         // STATE
-        InventoryItem item;
+        private InventoryItem item;
         private int number;
 
         // CACHED REFERENCE
-        Inventory inventory;
+        private Inventory inventory;
 
         // LIFECYCLE METHODS
 

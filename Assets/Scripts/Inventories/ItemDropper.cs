@@ -13,7 +13,7 @@ namespace RPG.Inventories
     {
         // STATE
         private List<Pickup> droppedItems = new List<Pickup>();
-        List<DropRecord> otherScenesDroppedItems = new List<DropRecord>();
+        private List<DropRecord> otherScenesDroppedItems = new List<DropRecord>();
 
         // PUBLIC
 
@@ -21,6 +21,7 @@ namespace RPG.Inventories
         /// Create a pickup at the current position.
         /// </summary>
         /// <param name="item">The item type for the pickup.</param>
+        /// <param name="number">The number of items to drop</param>
         public void DropItem(InventoryItem item, int number)
         {
             SpawnPickup(item, number, GetDropLocation());
@@ -39,7 +40,7 @@ namespace RPG.Inventories
 
         // PRIVATE
 
-        public void SpawnPickup(InventoryItem item, int number, Vector3 spawnLocation)
+        private void SpawnPickup(InventoryItem item, int number, Vector3 spawnLocation)
         {
             var pickup = item.SpawnPickup(spawnLocation, number);
             droppedItems.Add(pickup);

@@ -11,26 +11,27 @@ namespace RPG.Control
 {
     public class AIController : MonoBehaviour
     {
-        [SerializeField] float chaseDistance = 5f;
-        [SerializeField] float suspicionTime = 3f;
-        [SerializeField] float agroCoolDownTime = 5f;
-        [SerializeField] PatrolPath patrolPath;
-        [SerializeField] float waypointTolerance = 1f;
-        [SerializeField] float waypointDwellTime = 2f;
+        [SerializeField] private float chaseDistance = 5f;
+        [SerializeField] private float suspicionTime = 3f;
+        [SerializeField] private float agroCoolDownTime = 5f;
+        [SerializeField] private PatrolPath patrolPath;
+        [SerializeField] private float waypointTolerance = 1f;
+        [SerializeField] private float waypointDwellTime = 2f;
         [Range(0,1)]
-        [SerializeField] float patrolSpeedFraction = 0.3f;
-        [SerializeField] float shoutDistance = 5;
+        [SerializeField]
+        private float patrolSpeedFraction = 0.3f;
+        [SerializeField] private float shoutDistance = 5;
 
-        Fighter fighter;
-        Mover mover;
-        GameObject player;
-        Health health;
+        private Fighter fighter;
+        private Mover mover;
+        private GameObject player;
+        private Health health;
 
-        LazyValue<Vector3> guardPosition;
-        float timeSinceLastSawPlayer = Mathf.Infinity;
-        float timeSinceArriveAtWaypoint = Mathf.Infinity;
-        float timeSinceAggrevated = Mathf.Infinity;
-        int currentWaypointIndex = 0;
+        private LazyValue<Vector3> guardPosition;
+        private float timeSinceLastSawPlayer = Mathf.Infinity;
+        private float timeSinceArriveAtWaypoint = Mathf.Infinity;
+        private float timeSinceAggrevated = Mathf.Infinity;
+        private int currentWaypointIndex = 0;
 
         private void Awake()
         {
@@ -156,7 +157,7 @@ namespace RPG.Control
             }
         }
 
-        bool IsAggrevated()
+        private bool IsAggrevated()
         {
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
             return distanceToPlayer < chaseDistance  || timeSinceAggrevated < agroCoolDownTime;

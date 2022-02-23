@@ -7,7 +7,7 @@ namespace RPG.Combat
 {
     public class EnemyHealthDisplay : MonoBehaviour
     {
-        Fighter fighter;
+        private Fighter fighter;
 
         private void Awake()
         {

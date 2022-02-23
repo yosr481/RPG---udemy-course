@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using GameDevTV.Utils;
 using RPG.SceneManagment;
 using TMPro;
 using UnityEngine;

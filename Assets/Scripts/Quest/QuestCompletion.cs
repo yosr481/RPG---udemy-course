@@ -7,8 +7,8 @@ namespace RPG.Quests
     {
         [SerializeField] private Quest quest;
         [SerializeField] private string objective;
-        
-        QuestList questList;
+
+        private QuestList questList;
 
         private void Awake()
         {

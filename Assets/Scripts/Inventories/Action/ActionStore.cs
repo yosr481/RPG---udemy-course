@@ -8,7 +8,7 @@ namespace RPG.Inventories
 {
     public class ActionStore : MonoBehaviour, ISaveable
     {
-        Dictionary<int, DockedItemSlot> dockedItems = new Dictionary<int, DockedItemSlot>();
+        private Dictionary<int, DockedItemSlot> dockedItems = new Dictionary<int, DockedItemSlot>();
         private class DockedItemSlot
         {
             public ActionItem item;
@@ -53,8 +53,8 @@ namespace RPG.Inventories
         {
             if (dockedItems.ContainsKey(index))
             {
-                dockedItems[index].item.Use(user);
-                if (dockedItems[index].item.IsConsumable)
+                var wasUsed = dockedItems[index].item.Use(user);
+                if (wasUsed && dockedItems[index].item.IsConsumable())
                 {
                     RemoveItem(index, 1);
                 }
@@ -87,7 +87,7 @@ namespace RPG.Inventories
                 return 0;
             }
 
-            if (actionItem.IsConsumable) return int.MaxValue;
+            if (actionItem.IsConsumable()) return int.MaxValue;
             if (dockedItems.ContainsKey(index)) return 0;
             return 1;
         }

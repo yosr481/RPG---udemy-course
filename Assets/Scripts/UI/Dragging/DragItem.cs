@@ -23,12 +23,12 @@ namespace RPG.UI.Dragging
         where T : class
     {
         // PRIVATE STATE
-        Vector3 startPosition;
-        Transform originalParent;
-        IDragSource<T> source;
+        private Vector3 startPosition;
+        private Transform originalParent;
+        private IDragSource<T> source;
 
         // CACHED REFERENCES
-        Canvas parentCanvas;
+        private Canvas parentCanvas;
 
         // LIFECYCLE METHODS
         private void Awake()

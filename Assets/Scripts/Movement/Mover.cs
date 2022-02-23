@@ -8,11 +8,11 @@ namespace RPG.Movement
 {
     public class Mover : MonoBehaviour, IAction, ISaveable
     {
-        NavMeshAgent agent;
-        Animator animator;
-        Health health;
+        private NavMeshAgent agent;
+        private Animator animator;
+        private Health health;
 
-        float maxSpeed = 16.32f;
+        private float maxSpeed = 16.32f;
         private static readonly int ForwardSpeed = Animator.StringToHash("forwardSpeed");
 
         private void Awake()
@@ -22,9 +22,10 @@ namespace RPG.Movement
             health = GetComponent<Health>();
         }
 
-        void Update()
+        private void Update()
         {
-            agent.enabled = !health.IsDead();
+            if(health)
+                agent.enabled = !health.IsDead();
             UpdateAnimator();
         }
 
@@ -46,7 +47,7 @@ namespace RPG.Movement
             agent.isStopped = true;
         }
 
-        void UpdateAnimator()
+        private void UpdateAnimator()
         {
             Vector3 velocity = agent.velocity;
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);

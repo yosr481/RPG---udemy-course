@@ -24,7 +24,7 @@ namespace RPG.Core
         }
         
         [Serializable]
-        class Disjunction
+        private class Disjunction
         {
             [SerializeField] private Predicate[] or;
 
@@ -43,7 +43,7 @@ namespace RPG.Core
         }
         
         [Serializable]
-        class Predicate
+        private class Predicate
         {
             [SerializeField] private string predicate;
             [SerializeField] private string[] parameters;

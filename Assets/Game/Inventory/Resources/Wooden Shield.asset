@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5dc4327108b4f4e9b664b0fffe02264, type: 3}
-  m_Name: Healthy Hat
+  m_Name: Wooden Shield
   m_EditorClassIdentifier: 
-  itemID: 281b6b21-80d8-48c5-a1d2-7421e09cbb09
-  displayName: Healthy Hat
+  itemID: 3cf3e90b-3c3d-4798-a79a-d245b2a0e000
+  displayName: Wooden Shield
   description: 
-  icon: {fileID: 21300000, guid: ccf97ddb50dc9437e9899ba23fab088a, type: 3}
+  icon: {fileID: 21300000, guid: b4a4b8f5c2d49459891adf4008f22aeb, type: 3}
   pickup: {fileID: 6494234044896430859, guid: ab73185f2dadf4445ae07e78eb669c1f, type: 3}
-  stackable: 1
-  price: 39.99
+  stackable: 0
+  price: 10
   category: 1
   allowedEquipLocation: 1
+  equipCondition:
+    and: []
   additiveModifiers:
-  - Stat: 0
-    value: 20
-  precentageModifiers: []
+  - Stat: 8
+    value: 5
+  percentageModifiers: []

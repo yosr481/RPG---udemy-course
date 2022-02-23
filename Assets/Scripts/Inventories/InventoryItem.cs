@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace RPG.Inventories
@@ -15,22 +16,30 @@ namespace RPG.Inventories
     public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver    {
         // CONFIG DATA
         [Tooltip("Auto-generated UUID for saving/loading. Clear this field if you want to generate a new one.")]
-        [SerializeField] string itemID = null;
+        [SerializeField]
+        private string itemID = null;
         [Tooltip("Item name to be displayed in UI.")]
-        [SerializeField] string displayName = null;
+        [SerializeField]
+        private string displayName = null;
         [Tooltip("Item description to be displayed in UI.")]
-        [SerializeField][TextArea] string description = null;
+        [SerializeField][TextArea]
+        private string description = null;
         [Tooltip("The UI icon to represent this item in the inventory.")]
-        [SerializeField] Sprite icon = null;
+        [SerializeField]
+        private Sprite icon = null;
         [Tooltip("The prefab that should be spawned when this item is dropped.")]
-        [SerializeField] Pickup pickup = null;
+        [SerializeField]
+        private Pickup pickup = null;
         [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")]
-        [SerializeField] bool stackable = false;
+        [SerializeField]
+        private bool stackable = false;
         [SerializeField] private float price;
         [SerializeField] private ItemCategory category = ItemCategory.None;
 
+        [NonSerialized] protected GUIStyle contentStyle;
+
         // STATE
-        static Dictionary<string, InventoryItem> itemLookupCache;
+        private static Dictionary<string, InventoryItem> _itemLookupCache;
 
         // PUBLIC
 
@@ -45,24 +54,24 @@ namespace RPG.Inventories
         /// </returns>
         public static InventoryItem GetFromID(string itemID)
         {
-            if (itemLookupCache == null)
+            if (_itemLookupCache == null)
             {
-                itemLookupCache = new Dictionary<string, InventoryItem>();
+                _itemLookupCache = new Dictionary<string, InventoryItem>();
                 var itemList = Resources.LoadAll<InventoryItem>("");
                 foreach (var item in itemList)
                 {
-                    if (itemLookupCache.ContainsKey(item.itemID))
+                    if (_itemLookupCache.ContainsKey(item.itemID))
                     {
-                        Debug.LogError(string.Format("Looks like there's a duplicate RPG.UI.Inventory System ID for objects: {0} and {1}", itemLookupCache[item.itemID], item));
+                        Debug.LogError($"Looks like there's a duplicate RPG.UI.Inventory System ID for objects: {_itemLookupCache[item.itemID]} and {item}");
                         continue;
                     }
 
-                    itemLookupCache[item.itemID] = item;
+                    _itemLookupCache[item.itemID] = item;
                 }
             }
 
-            if (itemID == null || !itemLookupCache.ContainsKey(itemID)) return null;
-            return itemLookupCache[itemID];
+            if (itemID == null || !_itemLookupCache.ContainsKey(itemID)) return null;
+            return _itemLookupCache[itemID];
         }
 
         /// <summary>
@@ -73,10 +82,10 @@ namespace RPG.Inventories
         /// <returns>Reference to the pickup object spawned.</returns>
         public Pickup SpawnPickup(Vector3 position, int number)
         {
-            var pickup = Instantiate(this.pickup);
-            pickup.transform.position = position;
-            pickup.Setup(this, number);
-            return pickup;
+            var spawnPickup = Instantiate(pickup);
+            spawnPickup.transform.position = position;
+            spawnPickup.Setup(this, number);
+            return spawnPickup;
         }
 
         public Sprite GetIcon()
@@ -104,6 +113,11 @@ namespace RPG.Inventories
             return description;
         }
 
+        public Pickup GetPickup()
+        {
+            return pickup;
+        }
+
         public float GetPrice()
         {
             return price;
@@ -111,6 +125,99 @@ namespace RPG.Inventories
 
         public ItemCategory GetCategory => category;
 
+#if UNITY_EDITOR
+        private bool drawInventoryItem = true;
+        public virtual void DrawCustomInspector()
+        {
+            contentStyle = new GUIStyle
+            {
+                padding = new RectOffset(15,15,0,0)
+            };
+            
+            GUIStyle foldoutStyle = new GUIStyle(EditorStyles.foldout)
+            {
+                fontStyle = FontStyle.Bold
+            };
+
+            drawInventoryItem = EditorGUILayout.Foldout(drawInventoryItem, "Inventory Item Data", true, foldoutStyle);
+            if(!drawInventoryItem) return;
+
+            EditorGUILayout.BeginVertical(contentStyle);
+            SetItemID(EditorGUILayout.TextField("ItemID (clear to reset)", GetItemID()));
+            SetDisplayName(EditorGUILayout.TextField("Display name", GetDisplayName()));
+            SetDescription(EditorGUILayout.TextField("Description", GetDescription()));
+            SetIcon((Sprite)EditorGUILayout.ObjectField("Icon", GetIcon(), typeof(Sprite), false));
+            SetPickup((Pickup)EditorGUILayout.ObjectField("Pickup", GetPickup(), typeof(Pickup), false));
+            SetStackable(EditorGUILayout.Toggle("Stackable", IsStackable()));
+            EditorGUILayout.EndVertical();
+        }
+        
+        // Setters
+        public void SetItemID(string newItemID)
+        {
+            if(itemID==newItemID) return;
+            SetUndo("Change ItemID");
+            itemID=newItemID;
+            Dirty();
+        }
+        
+        public void SetDisplayName(string newDisplayName)
+        {
+            if (newDisplayName == displayName) return;
+            SetUndo("Change Display Name");
+            displayName = newDisplayName;
+            Dirty();
+        }
+
+        public void SetDescription(string newDescription)
+        {
+            if (newDescription == description) return;
+            SetUndo("Change Description");
+            description = newDescription;
+            Dirty();
+        }
+
+        public void SetIcon(Sprite newIcon)
+        {
+            if (icon == newIcon) return;
+            SetUndo("Change Icon");
+            icon = newIcon;
+            Dirty();
+        }
+
+        public void SetPickup(Pickup newPickup)
+        {
+            if (pickup == newPickup) return;
+            SetUndo("Change Pickup");
+            pickup = newPickup;
+            Dirty();
+        }
+
+        public void SetStackable(bool newStackable)
+        {
+            if (stackable == newStackable) return;
+            SetUndo(stackable?"Set Not Stackable": "Set Stackable");
+            stackable = newStackable;
+            Dirty();
+        }
+        
+        // Helper functions
+        public void SetUndo(string message)
+        {
+            Undo.RecordObject(this, message);
+        }
+
+        public void Dirty()
+        {
+            EditorUtility.SetDirty(this);
+        }
+
+        public bool FloatEquals(float value1, float value2)
+        {
+            return Math.Abs(value1 - value2) < 0.001f;
+        }
+#endif
+        
         // PRIVATE
         
         void ISerializationCallbackReceiver.OnBeforeSerialize()

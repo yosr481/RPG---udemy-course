@@ -8,7 +8,7 @@ namespace RPG.Attributes
 {
     public class HealthDisplay : MonoBehaviour
     {
-        Health health;
+        private Health health;
 
         private void Awake()
         {

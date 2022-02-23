@@ -36,7 +36,7 @@ namespace LayerLab.CasualGame
             CheckControl();
         }
 
-        void Update()
+        private void Update()
         {
             if (panels.Count <= 0 || !isReady) return;
 
@@ -68,7 +68,7 @@ namespace LayerLab.CasualGame
             CheckControl();
         }
 
-        void SetArrowActive()
+        private void SetArrowActive()
         {
             buttonPrev.gameObject.SetActive(page > 0);
             buttonNext.gameObject.SetActive(page < panels.Count - 1);

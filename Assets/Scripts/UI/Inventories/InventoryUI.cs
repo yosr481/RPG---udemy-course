@@ -12,10 +12,10 @@ namespace RPG.UI.Inventories
     public class InventoryUI : MonoBehaviour
     {
         // CONFIG DATA
-        [SerializeField] InventorySlotUI InventoryItemPrefab = null;
+        [SerializeField] private InventorySlotUI InventoryItemPrefab = null;
 
         // CACHE
-        Inventory playerInventory;
+        private Inventory playerInventory;
 
         // LIFECYCLE METHODS
 

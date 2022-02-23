@@ -5,7 +5,7 @@ namespace RPG.Shops
 {
     public class Shopper : MonoBehaviour
     {
-        [SerializeField] float storeDistanceRange = 2.0f;
+        [SerializeField] private float storeDistanceRange = 2.0f;
 
         private Store activeStore;
 

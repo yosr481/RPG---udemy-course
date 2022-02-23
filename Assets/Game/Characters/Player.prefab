@@ -222,6 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e4fc32e1114c968a4ab16adac0b79f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnLocation: {fileID: 0}
+  respawnDelay: 3
+  fadeTime: 0.8
+  healthRegenPercentage: 20
+  enemyHealthRegenPercentage: 20
 --- !u!1001 &230077564137252360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,6 +290,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 986466469672692838, guid: b27ed4951789c5b44bfefbfd0e7c9266, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4731388196827828155, guid: b27ed4951789c5b44bfefbfd0e7c9266, type: 3}
       propertyPath: leftHandPosition
       value: 
@@ -293,6 +302,10 @@ PrefabInstance:
       propertyPath: rightHandPosition
       value: 
       objectReference: {fileID: 8227599769960572444}
+    - target: {fileID: 7720738457225823196, guid: b27ed4951789c5b44bfefbfd0e7c9266, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9079271661304530876, guid: b27ed4951789c5b44bfefbfd0e7c9266, type: 3}
       propertyPath: inventorySize
       value: 8

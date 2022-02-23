@@ -9,12 +9,12 @@ namespace RPG.UI.Inventories
     public class InventorySlotUI : MonoBehaviour,IItemHolder, IDragContainer<InventoryItem>
     {
         // CONFIG DATA
-        [SerializeField] InventoryItemIcon icon = null;
+        [SerializeField] private InventoryItemIcon icon = null;
 
         // STATE
-        int index;
-        InventoryItem item;
-        Inventory inventory;
+        private int index;
+        private InventoryItem item;
+        private Inventory inventory;
 
         // PUBLIC
 

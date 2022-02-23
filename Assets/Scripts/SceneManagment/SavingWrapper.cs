@@ -8,9 +8,9 @@ namespace RPG.SceneManagment
 {
     public class SavingWrapper : MonoBehaviour
     {
-        [SerializeField] float fadeInTime = 0.3f;
+        [SerializeField] private float fadeInTime = 0.3f;
         [SerializeField] private float fadeOutTime = 0.2f;
-        [SerializeField] int FirstLevelBuildIndex = 1;
+        [SerializeField] private int FirstLevelBuildIndex = 1;
         [SerializeField] private int menuLevelBuildIndex = 0;
 
         private const string CurrentSaveKey = "currentSaveName";
@@ -76,7 +76,7 @@ namespace RPG.SceneManagment
             yield return fader.FadeIn(fadeInTime);
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.S))
             {

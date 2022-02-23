@@ -6,8 +6,8 @@ namespace RPG.SceneManagment
 {
     public class Fader : MonoBehaviour
     {
-        CanvasGroup canvasGroup;
-        Coroutine currentActiveFade = null;
+        private CanvasGroup canvasGroup;
+        private Coroutine currentActiveFade = null;
 
         private void Awake()
         {

@@ -68,7 +68,7 @@ public class MaterialEffect
 			
 		}
     }
-    void SetAlpha(float value)
+    private void SetAlpha(float value)
     {
         Color color = m_EffectMaterial.color;
         color.a = value;
@@ -91,7 +91,7 @@ public class RenderEffect : MonoBehaviour {
     [HideInInspector]
     public int m_SortingOrder;
 
-    void Awake()
+    private void Awake()
     {
 		m_ReferenceCamera = Camera.main;
         m_Render = GetComponent<Renderer>();
@@ -99,7 +99,7 @@ public class RenderEffect : MonoBehaviour {
             return;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         RefreshMaterial();
     }
@@ -141,7 +141,7 @@ public class RenderEffect : MonoBehaviour {
         UpdateRenderLayer();
     }
 
-    void UpdateBillBoard()
+    private void UpdateBillBoard()
     {
         if (m_EnableBillBoard == false)
             return;
@@ -171,7 +171,7 @@ public class RenderEffect : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
         m_TimeLine += Time.deltaTime;
         foreach(MaterialEffect matEffect in m_MaterialEffects)
         {
@@ -179,7 +179,7 @@ public class RenderEffect : MonoBehaviour {
         }
     }
 
-	void LateUpdate(){
+	private void LateUpdate(){
 		UpdateBillBoard();
 	}
 

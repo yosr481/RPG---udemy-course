@@ -18,7 +18,8 @@ namespace RPG.Dialogue
         public bool HandleRaycast(PlayerController callingController)
         {
             if (dialogue == null) return false;
-            if (GetComponent<Health>().IsDead()) return false;
+            var health = GetComponent<Health>();
+            if (health && health.IsDead()) return false;
             
             if (Input.GetMouseButtonDown(0))
             {

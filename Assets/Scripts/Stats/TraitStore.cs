@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Core;
 using RPG.Saving;
 using UnityEngine;
 
 namespace RPG.Stats
 {
-	public class TraitStore : MonoBehaviour, IModifierProvider, ISaveable
+	public class TraitStore : MonoBehaviour, IModifierProvider, ISaveable, IPredicateEvaluator
 	{
 		[SerializeField] private TraitBonus[] bonusConfig;
 		[Serializable]
@@ -108,6 +109,19 @@ namespace RPG.Stats
 		public void RestoreState(object state)
 		{
 			assignedPoints = new Dictionary<Trait, int>((IDictionary<Trait, int>)state);
+		}
+		public bool? Evaluate(string predicate, string[] parameters)
+		{
+			switch (predicate)
+			{
+				case "MinimumTrait":
+					if (Enum.TryParse<Trait>(parameters[0], out var trait))
+					{
+						return GetPoints(trait) >= int.Parse(parameters[1]);
+					}
+					break;
+			}
+			return null;
 		}
 	}
 }

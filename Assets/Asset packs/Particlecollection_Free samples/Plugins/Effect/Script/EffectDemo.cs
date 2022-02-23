@@ -16,7 +16,7 @@ public class EffectDemo : MonoBehaviour {
 	private int m_NowIndex = 0;
 	private string m_NowEffectName;
 	// Use this for initialization
-	void Awake () {
+	private void Awake () {
         #if (UNITY_EDITOR_WIN && !UNITY_WEBPLAYER)
 		    m_EffectPrefabList.Clear();
 		    string[] aPrefabFiles = Directory.GetFiles(Application.dataPath, "*.prefab", SearchOption.AllDirectories);
@@ -36,12 +36,12 @@ public class EffectDemo : MonoBehaviour {
 		m_NowIndex = 1;
 		GenPrevEffect ();
 	}
-	
-	void OnDestroy(){
+
+	private void OnDestroy(){
 		Object.DestroyImmediate (m_NowShowEffect);	
 	}
-	
-	void LateUpdate(){
+
+	private void LateUpdate(){
 		if (Application.isPlaying == false)
 			return;
 		if (m_LookAtEffect && m_NowShowEffect) {
@@ -50,7 +50,7 @@ public class EffectDemo : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void OnGUI() {
+	private void OnGUI() {
 		if (Application.isPlaying == false)
 			return;
 		if (GUI.Button (new Rect (0, 25, 80, 50), "Prev")) {
@@ -61,8 +61,8 @@ public class EffectDemo : MonoBehaviour {
 		}
 		GUI.Label (new Rect (5, 0, 350, 50), m_NowEffectName);
 	}
-	
-	void GenPrevEffect(){
+
+	private void GenPrevEffect(){
 		m_NowIndex--;
 		if (m_NowIndex < 0) {
 			m_NowIndex = 0;
@@ -74,8 +74,8 @@ public class EffectDemo : MonoBehaviour {
 		m_NowShowEffect =  Instantiate(m_EffectPrefabList [m_NowIndex]);
 		m_NowEffectName = m_NowShowEffect.name;
 	}
-	
-	void GenNextEffect(){
+
+	private void GenNextEffect(){
 		m_NowIndex++;
 		if (m_NowIndex >= m_EffectPrefabList.Count) {
 			m_NowIndex = m_EffectPrefabList.Count - 1;	

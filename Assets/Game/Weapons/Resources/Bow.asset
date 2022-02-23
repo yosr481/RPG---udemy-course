@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 48642735-1989-46fd-8e66-4a8a54749b7c
   displayName: Bow
-  description: Shoots arrows & it's damage is 10.
+  description: 
   icon: {fileID: 21300000, guid: cba6fba15682e49cdab63583abb7be7c, type: 3}
   pickup: {fileID: 8549331743509494837, guid: 1fa4d021b81b8a544be7ab9f6fee4171, type: 3}
   stackable: 0
   price: 49.99
   category: 2
   allowedEquipLocation: 0
+  equipCondition:
+    and: []
   EquippedPrefab: {fileID: 3660370297341805520, guid: e17777123f5037047a80e5f1a4d18483, type: 3}
   animatorOverride: {fileID: 22100000, guid: 4006c2f9f5d3ee14382b87492fb8d678, type: 2}
   weaponDamage: 10

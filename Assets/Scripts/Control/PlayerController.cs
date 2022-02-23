@@ -31,7 +31,7 @@ namespace RPG.Control
         private bool isDraggingUI = false;
 
         // Use this for initialization
-        void Awake()
+        private void Awake()
         {
             mover = GetComponent<Mover>();
             health = GetComponent<Health>();
@@ -39,7 +39,7 @@ namespace RPG.Control
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (InteractWithUI()) return;
             if (health.IsDead())

@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
@@ -9,12 +12,13 @@ using RPG.Inventories;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction
     {
-        [SerializeField] float timeBetweenAttacks = 1.21f;
-        [SerializeField] Transform rightHandPosition = null;
-        [SerializeField] Transform leftHandPosition = null;
-        [SerializeField] WeaponConfig defaultWeapon = null;
+        [SerializeField] private float timeBetweenAttacks = 1.21f;
+        [SerializeField] private Transform rightHandPosition = null;
+        [SerializeField] private Transform leftHandPosition = null;
+        [SerializeField] private WeaponConfig defaultWeapon = null;
+        [SerializeField] private float autoAttackRange = 4f;
 
         private float timeSinceLastAttack = Mathf.Infinity;
         private Health target;
@@ -47,7 +51,11 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
-            if (target.IsDead()) return;
+            if (target.IsDead())
+            {
+                target = FindNewTargetInRange();
+                if(target == null) return;
+            }
 
             if (!IsInRange())
             {
@@ -103,6 +111,39 @@ namespace RPG.Combat
                 timeSinceLastAttack = 0;
             }
         }
+        
+        private Health FindNewTargetInRange()
+        {
+            Health currentCandidate = null;
+            float bestDistance = Mathf.Infinity;
+            
+            foreach (var candidate in FindAllTargetsInRange())
+            {
+                float candidateDistance = Vector3.Distance(
+                    transform.position, candidate.transform.position);
+                if (candidateDistance < bestDistance)
+                {
+                    currentCandidate = candidate;
+                    bestDistance = candidateDistance;
+                }
+            }
+
+            return currentCandidate;
+        }
+
+        private IEnumerable<Health> FindAllTargetsInRange()
+        {
+            // Sphere cast
+            var hits = Physics.SphereCastAll(transform.position, autoAttackRange, Vector3.up, autoAttackRange);
+            foreach (var hit in hits)
+            {
+                Health health = hit.transform.GetComponent<Health>();
+                if(!health) continue;
+                if(health.IsDead()) continue;
+                if(health.gameObject == gameObject) continue;
+                yield return health;
+            }
+        }
 
         private void TriggerAttack()
         {
@@ -111,11 +152,17 @@ namespace RPG.Combat
         }
 
         // Animation Event
-        void Hit()
+        private void Hit()
         {
             if (target == null) return;
 
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+            var targetBaseStat = target.GetComponent<BaseStats>();
+            if(targetBaseStat != null)
+            {
+                float defence = targetBaseStat.GetStat(Stat.Defence);
+                damage /= 1 + defence / damage;
+            }
 
             if(currentWeapon.Value != null)
             {
@@ -133,7 +180,7 @@ namespace RPG.Combat
             }
         }
 
-        void Shoot()
+        private void Shoot()
         {
             Hit();
         }
@@ -167,18 +214,6 @@ namespace RPG.Combat
         {
             GetComponent<Animator>().ResetTrigger("Attack");
             GetComponent<Animator>().SetTrigger("StopAttack");
-        }
-
-        public object CaptureState()
-        {
-            return currentWeaponConfig.name;
-        }
-
-        public void RestoreState(object state)
-        {
-            string weaponName = (string)state;
-            WeaponConfig weapon = Resources.Load<WeaponConfig>(weaponName);
-            EquipWeapon(weapon);
         }
     }
 }

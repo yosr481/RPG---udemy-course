@@ -7,7 +7,7 @@ namespace RPG.UI.Quests
     public class QuestListUI : MonoBehaviour
     {
         [SerializeField] private QuestItemUI questPrefab;
-        QuestList questList;
+        private QuestList questList;
 
         private void Awake()
         {
