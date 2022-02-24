@@ -1383,7 +1383,7 @@ MonoBehaviour:
   - {fileID: 719871482}
   - {fileID: 1068160990}
   - {fileID: 1874635527}
-  activateOnStart: 1
+  activateOnStart: 0
 --- !u!1 &1184365869
 GameObject:
   m_ObjectHideFlags: 0

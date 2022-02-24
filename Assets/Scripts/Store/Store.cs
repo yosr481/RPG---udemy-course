@@ -115,7 +115,7 @@ namespace RPG.Shops
             return total;
         }
 
-        public void AddToTransaction(InventoryItem item, int quantity)
+        public void AddToTransaction(InventoryItem item, int quantity, bool callOnChangeEvent = true)
         {
             if (!transaction.ContainsKey(item))
             {
@@ -138,7 +138,8 @@ namespace RPG.Shops
                 transaction.Remove(item);
             }
             
-            OnChange?.Invoke();
+            if(callOnChangeEvent)
+                OnChange?.Invoke();
         }
 
         public string GetStoreName()
@@ -165,7 +166,7 @@ namespace RPG.Shops
         {
             if (Input.GetMouseButtonDown(0))
             {
-                callingController.GetComponent<Shopper>().SetActiveStore(this);
+                callingController.GetComponent<Shopper>().OpenStoreAction(this);
             }
 
             return true;
@@ -203,7 +204,7 @@ namespace RPG.Shops
             bool success = shopperInventory.AddToFirstEmptySlot(item, 1);
             if (success)
             {
-                AddToTransaction(item, -1);
+                AddToTransaction(item, -1, false);
                 if (!stockSold.ContainsKey(item))
                 {
                     stockSold[item] = 0;
@@ -218,7 +219,7 @@ namespace RPG.Shops
             int slot = FindFirstItemSlot(shopperInventory, item);
             if(slot == -1) return;
 
-            AddToTransaction(item, -1);
+            AddToTransaction(item, -1, false);
             shopperInventory.RemoveFromSlot(slot, 1);
             if (!stockSold.ContainsKey(item))
             {

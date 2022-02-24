@@ -31,7 +31,7 @@ namespace RPG.Inventories
             Dirty();
         }
 
-        private bool drawInventoryItem = true;
+        private bool drawEquipableItem = true;
         public override void DrawCustomInspector()
         {
             base.DrawCustomInspector();
@@ -40,8 +40,8 @@ namespace RPG.Inventories
                 fontStyle = FontStyle.Bold
             };
 
-            drawInventoryItem = EditorGUILayout.Foldout(drawInventoryItem, "Equipable Item Data", true, foldoutStyle);
-            if(!drawInventoryItem) return;
+            drawEquipableItem = EditorGUILayout.Foldout(drawEquipableItem, "Equipable Item Data", true, foldoutStyle);
+            if(!drawEquipableItem) return;
             
             EditorGUILayout.BeginVertical(contentStyle);
             SetAllowedEquipLocation((EquipLocation)EditorGUILayout.EnumPopup(new GUIContent("Equip Location"), allowedEquipLocation, IsLocationSelectable, false));

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.Stats
+namespace RPG.Stats.UI
 {
     public class LevelDisplay : MonoBehaviour
     {

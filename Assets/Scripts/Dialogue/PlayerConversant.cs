@@ -1,21 +1,39 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using RPG.Core;
+using RPG.Movement;
 using UnityEngine;
 
 namespace RPG.Dialogue
 {
-    public class PlayerConversant : MonoBehaviour
+    public class PlayerConversant : MonoBehaviour, IAction
     {
         [SerializeField] private string playerName;
         private Dialogue currentDialogue;
         private DialogueNode currentNode = null;
         private AIConversant currentConversant = null;
         private bool isChoosing = false;
+        private AIConversant targetConversant = null;
+        private Dialogue targetDialogue = null;
 
         public event Action onConversationUpdated;
+
+        private void Update()
+        {
+            if(!targetConversant) return;
+
+            if (Vector3.Distance(transform.position, targetConversant.transform.position) > 10.0f)
+            {
+                GetComponent<Mover>().MoveTo(targetConversant.transform.position, 1);
+            }
+            else
+            {
+                GetComponent<Mover>().Cancel();
+                StartDialogue(targetConversant, targetDialogue);
+                targetConversant = null;
+            }
+        }
 
         public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
         {
@@ -24,6 +42,15 @@ namespace RPG.Dialogue
             currentNode = currentDialogue.GetRootNode();
             TriggerEnterAction();
             onConversationUpdated?.Invoke();
+        }
+
+        public void StartDialogueAction(AIConversant newConversant, Dialogue newDialogue)
+        {
+            if(newConversant == currentConversant) return;
+            Quit();
+            GetComponent<ActionScheduler>().StartAction(this);
+            targetConversant = newConversant;
+            targetDialogue = newDialogue;
         }
 
         public void Quit()
@@ -141,6 +168,10 @@ namespace RPG.Dialogue
             {
                 trigger.Trigger(action);
             }
+        }
+        public void Cancel()
+        {
+            Quit();
         }
     }
 }

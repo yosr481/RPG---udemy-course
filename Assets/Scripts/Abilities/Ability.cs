@@ -127,7 +127,7 @@ private void AddFilterStrategies(List<FilterStrategy> strategiesList)
 				EditorGUILayout.BeginHorizontal();
 				FilterStrategy currentStrategy = GetFilterStrategies(strategiesList, i);
 				SetFilterStrategies(strategiesList, i,(FilterStrategy)EditorGUILayout.ObjectField("Filter Strategy", currentStrategy, typeof(FilterStrategy), false));
-				if (GUILayout.Button("-"))
+				if (GUILayout.Button("-", EditorStyles.miniButtonRight, GUILayout.ExpandWidth(false)))
 				{
 					strategyToDelete = i;
 				}
@@ -182,7 +182,7 @@ private void AddFilterStrategies(List<FilterStrategy> strategiesList)
 				EditorGUILayout.BeginHorizontal();
 				EffectStrategy currentStrategy = GetEffectStrategies(strategiesList, i);
 				SetEffectStrategies(strategiesList, i,(EffectStrategy)EditorGUILayout.ObjectField($"Effect Strategy", currentStrategy, typeof(EffectStrategy), false));
-				if (GUILayout.Button("-"))
+				if (GUILayout.Button("-", EditorStyles.miniButtonRight, GUILayout.ExpandWidth(false)))
 				{
 					strategyToDelete = i;
 				}
@@ -197,7 +197,6 @@ private void AddFilterStrategies(List<FilterStrategy> strategiesList)
 
 			if (GUILayout.Button("Add Strategy"))
 			{
-				// AddEffectStrategies(strategiesList);
 				AddEffectStrategies(strategiesList);
 			}
 		}
@@ -259,6 +258,7 @@ private void AddFilterStrategies(List<FilterStrategy> strategiesList)
 			}
 			EditorGUILayout.EndVertical();
 			
+			EditorGUILayout.BeginVertical(contentStyle);
 			SetCooldownTime(EditorGUILayout.IntSlider("Cooldown Time", (int)cooldownTime, 0, 60));
 			SetManaCost(EditorGUILayout.IntSlider("Mana Cost", (int)manaCost, 0, 1000));
 			EditorGUILayout.EndVertical();

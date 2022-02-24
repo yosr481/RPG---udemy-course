@@ -96,7 +96,7 @@ namespace RPG.UI.Shops
 
         public void Close()
         {
-            shopper.SetActiveStore(null);
+            shopper.CloseActiveStore();
         }
     }
 }

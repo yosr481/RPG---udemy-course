@@ -13,14 +13,6 @@ namespace RPG.Control
         {
             pickup = GetComponent<Pickup>();
         }
-        
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.gameObject.CompareTag("Player"))
-            {
-                pickup.PickupItem();
-            }
-        }
 
         public CursorType GetCursorType()
         {
@@ -31,7 +23,7 @@ namespace RPG.Control
         {
             if (Input.GetMouseButtonDown(0))
             {
-                callingController.GetComponent<Mover>().StartMoveAction(transform.position, 1);
+                callingController.GetComponent<Collector>().StartCollectionAction(pickup);
             }
             return true;
         }

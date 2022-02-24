@@ -166,7 +166,7 @@ namespace RPG.Combat
             return candidate == EquipLocation.Weapon;
         }
 
-        private bool drawInventoryItem = true;
+        private bool drawWeaponConfigItem = true;
         public override void DrawCustomInspector()
         {
             base.DrawCustomInspector();
@@ -176,8 +176,8 @@ namespace RPG.Combat
                 fontStyle = FontStyle.Bold
             };
 
-            drawInventoryItem = EditorGUILayout.Foldout(drawInventoryItem, "Weapon Config Data", true, foldoutStyle);
-            if(!drawInventoryItem) return;
+            drawWeaponConfigItem = EditorGUILayout.Foldout(drawWeaponConfigItem, "Weapon Config Data", true, foldoutStyle);
+            if(!drawWeaponConfigItem) return;
 
             EditorGUILayout.BeginVertical(contentStyle);
             SetEquippedPrefab((Weapon)EditorGUILayout.ObjectField("Equipped Prefab", EquippedPrefab,typeof(Object), false));

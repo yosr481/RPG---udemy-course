@@ -1,9 +1,11 @@
 using System;
+using RPG.Core;
+using RPG.Movement;
 using UnityEngine;
 
 namespace RPG.Shops
 {
-    public class Shopper : MonoBehaviour
+    public class Shopper : MonoBehaviour, IAction
     {
         [SerializeField] private float storeDistanceRange = 2.0f;
 
@@ -11,7 +13,23 @@ namespace RPG.Shops
 
         public event Action ActiveStoreChange;
 
-        public void SetActiveStore(Store store)
+        private void Update()
+        {
+            if(!activeStore) return;
+
+            if (Vector3.Distance(transform.position, activeStore.transform.position) > 10.0f)
+            {
+                GetComponent<Mover>().MoveTo(activeStore.transform.position, 1);
+            }
+            else
+            {
+                GetComponent<Mover>().Cancel();
+                ActiveStoreChange?.Invoke();
+                activeStore = null;
+            }
+        }
+
+        private void SetActiveStore(Store store)
         {
             if (activeStore)
             {
@@ -23,13 +41,28 @@ namespace RPG.Shops
             {
                 activeStore.GetShopper(this);
             }
-            
+        }
+
+        public void CloseActiveStore()
+        {
+            activeStore = null;
             ActiveStoreChange?.Invoke();
+        }
+        
+        public void OpenStoreAction(Store newStore)
+        {
+            if(newStore == activeStore) return;
+            GetComponent<ActionScheduler>().StartAction(this);
+            SetActiveStore(newStore);
         }
 
         public Store GetActiveStore()
         {
             return activeStore;
+        }
+        public void Cancel()
+        {
+            GetComponent<Mover>().Cancel();
         }
     }
 }

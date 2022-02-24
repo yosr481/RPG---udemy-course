@@ -85,8 +85,8 @@ namespace RPG.Inventories
                 Modifier modifier = modifierList[i];
                 EditorGUILayout.BeginHorizontal();
                 SetStat(modifierList, i, (Stat) EditorGUILayout.EnumPopup(statLabel, modifier.Stat, IsStatSelectable, false));
-                SetValue(modifierList, i, EditorGUILayout.IntSlider("Value", (int) modifier.value, -20, 100));
-                if (GUILayout.Button("-"))
+                SetValue(modifierList, i, EditorGUILayout.IntSlider((int) modifier.value, -20, 100));
+                if (GUILayout.Button("-", EditorStyles.miniButtonRight, GUILayout.ExpandWidth(false)))
                 {
                     modifierToDelete = i;
                 }
@@ -99,7 +99,7 @@ namespace RPG.Inventories
                 RemoveModifier(modifierList, modifierToDelete);
             }
 
-            if (GUILayout.Button("Add Modifier"))
+            if (GUILayout.Button("Add Modifier", EditorStyles.miniButton, GUILayout.ExpandWidth(false)))
             {
                 AddModifier(modifierList);
             }
@@ -130,7 +130,8 @@ namespace RPG.Inventories
 
             GUIStyle modifiersFoldoutStyle = new GUIStyle(EditorStyles.foldout)
             {
-                fontStyle = FontStyle.Italic
+                fontStyle = FontStyle.Italic,
+                padding = new RectOffset(15,15,0,0)
             };
             
             EditorGUILayout.BeginVertical(contentStyle);

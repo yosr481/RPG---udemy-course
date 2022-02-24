@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEditor.Callbacks;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace RPG.Inventories.Editor
@@ -8,7 +9,7 @@ namespace RPG.Inventories.Editor
 	{
 		private InventoryItem selected;
 		[MenuItem("Window/InventoryItem Editor")]
-		private static void ShowWindow()
+		public static void ShowWindow()
 		{
 			var window = GetWindow<InventoryItemEditor>();
 			window.titleContent = new GUIContent("InventoryItem");
@@ -43,27 +44,6 @@ namespace RPG.Inventories.Editor
 			return false;
 		}
 		
-		GUIStyle previewStyle;
-		GUIStyle descriptionStyle;
-		GUIStyle headerStyle;
-
-		void OnEnable()
-		{
-			previewStyle = new GUIStyle
-			{
-				normal =
-				{
-					background = EditorGUIUtility.Load(
-						"Assets/Asset packs/GUI PRO Kit - Casual Game/ResourcesData/Sprite/Component/Frame/Frame_ItemFrame01_Color_Purple.png") as Texture2D
-				},
-				padding = new RectOffset(40, 40, 40, 40),
-				border = new RectOffset(0, 0, 0, 0)
-			};
-		}
-
-		private bool stylesInitialized = false;
-
-
 		private void OnGUI()
 		{
 			if (selected == null)
@@ -71,23 +51,7 @@ namespace RPG.Inventories.Editor
 				EditorGUILayout.HelpBox("No Item Selected", MessageType.Error);
 				return;
 			}
-
-			if (!stylesInitialized)
-			{
-				descriptionStyle = new GUIStyle(GUI.skin.label)
-				{
-					richText = true,
-					wordWrap = true,
-					stretchHeight = true,
-					fontSize = 14,
-					alignment = TextAnchor.MiddleCenter
-				};
-				headerStyle = new GUIStyle(descriptionStyle)
-				{
-					fontSize = 24
-				};
-				stylesInitialized = true;
-			}
+			
 			DrawInspector();
 		}
 

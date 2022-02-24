@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RPG.Core;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ namespace RPG.Inventories
     /// In practice, you are likely to use a subclass such as `ActionItem` or
     /// `EquipableItem`.
     /// </remarks>
-    public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver    {
+    public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver, IHasItemID
+    {
         // CONFIG DATA
         [Tooltip("Auto-generated UUID for saving/loading. Clear this field if you want to generate a new one.")]
         [SerializeField]
@@ -54,24 +56,7 @@ namespace RPG.Inventories
         /// </returns>
         public static InventoryItem GetFromID(string itemID)
         {
-            if (_itemLookupCache == null)
-            {
-                _itemLookupCache = new Dictionary<string, InventoryItem>();
-                var itemList = Resources.LoadAll<InventoryItem>("");
-                foreach (var item in itemList)
-                {
-                    if (_itemLookupCache.ContainsKey(item.itemID))
-                    {
-                        Debug.LogError($"Looks like there's a duplicate RPG.UI.Inventory System ID for objects: {_itemLookupCache[item.itemID]} and {item}");
-                        continue;
-                    }
-
-                    _itemLookupCache[item.itemID] = item;
-                }
-            }
-
-            if (itemID == null || !_itemLookupCache.ContainsKey(itemID)) return null;
-            return _itemLookupCache[itemID];
+            return ResourceRetriever<InventoryItem>.GetFromID(itemID);
         }
 
         /// <summary>

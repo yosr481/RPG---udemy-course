@@ -30,6 +30,8 @@ namespace RPG.Quests
             public Condition completionCondition;
         }
         
+        private static Dictionary<string, Quest> _masterQuestDictionary;
+        
         public string GetTitle()
         {
             return name;
@@ -54,10 +56,18 @@ namespace RPG.Quests
         {
             return objectives.Any(objective => objective.reference == objectiveRef);
         }
-
         public static Quest GetByName(string questName)
         {
-            return Resources.LoadAll<Quest>("").FirstOrDefault(quest => quest.name == questName);
+            if (_masterQuestDictionary == null)
+            {
+                _masterQuestDictionary = new Dictionary<string, Quest>();
+                foreach (Quest quest in Resources.LoadAll<Quest>(""))
+                {
+                    if (_masterQuestDictionary.ContainsKey(quest.name)) Debug.Log($"There are two {quest.name} quests in the system");
+                    else _masterQuestDictionary.Add(quest.name, quest);
+                }
+            }
+            return _masterQuestDictionary.ContainsKey(questName) ? _masterQuestDictionary[questName] : null;
         }
     }
 }

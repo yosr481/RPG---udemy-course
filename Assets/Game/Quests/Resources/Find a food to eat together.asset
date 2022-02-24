@@ -15,8 +15,11 @@ MonoBehaviour:
   objectives:
   - reference: 0
     description: Find the house of food
+    usesCondition: 0
+    completionCondition:
+      and: []
   rewards:
   - number: 5
-    item: {fileID: 11400000, guid: a71325782ded5a346a5174166a7843ec, type: 2}
+    item: {fileID: 11400000, guid: c63195cde755dd145bce5d1dce0b6c08, type: 2}
   - number: 2
-    item: {fileID: 11400000, guid: e1785fdd0bc98804e8158f2f0f7795c0, type: 2}
+    item: {fileID: 11400000, guid: 935d60fccf055b947a33401e3016ec49, type: 2}

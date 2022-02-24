@@ -1,11 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace RPG.Stats
+﻿namespace RPG.Stats
 {
     public enum CharacterClass
     {
-        Player,
-        Enemy
+        Player = 0,
+        Enemy = 1
     }
 }

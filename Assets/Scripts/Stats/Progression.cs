@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -29,10 +31,22 @@ namespace RPG.Stats
         public int GetLevels(Stat stat, CharacterClass characterClass)
         {
             BuildLookup();
-
+            if (!lookupTable[characterClass].ContainsKey(stat))
+                return 0;
+            
             float[] levels = lookupTable[characterClass][stat];
-
             return levels.Length;
+        }
+
+        public int GetStatsNumberForCharacter(CharacterClass character)
+        {
+            BuildLookup();
+            return lookupTable[character].Count;
+        }
+
+        public int GetNumberOfMaxLevelsInStats(CharacterClass character)
+        {
+            return (from progressionClass in progressionCharacterClasses where progressionClass.characterClass == character select progressionClass.stats.Max(stat => stat.levels.Length - 1)).FirstOrDefault();
         }
 
         private void BuildLookup()
@@ -55,14 +69,14 @@ namespace RPG.Stats
         }
 
         [System.Serializable]
-        private class ProgressionCharacterClass
+        public class ProgressionCharacterClass
         {
             public CharacterClass characterClass;
             public ProgressionStat[] stats;
         }
 
         [System.Serializable]
-        private class ProgressionStat
+        public class ProgressionStat
         {
             public Stat stat;
             public float[] levels;
