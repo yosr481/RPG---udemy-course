@@ -107,9 +107,10 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: HasQuest
+      - predicate: 1
         parameters:
         - Find a food to eat together
+        - 
         negate: 1
 --- !u!114 &-3819614846378270221
 MonoBehaviour:
@@ -191,9 +192,10 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: HasQuest
+      - predicate: 1
         parameters:
         - Find a food to eat together
+        - 50
         negate: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -239,8 +241,8 @@ MonoBehaviour:
   - d1e3d181-5a74-4de6-8ebc-d8726314a527
   rect:
     serializedVersion: 2
-    x: 328
-    y: 69
+    x: 329
+    y: 68
     width: 200
     height: 85
   onEnterAction: 
@@ -248,9 +250,10 @@ MonoBehaviour:
   condition:
     and:
     - or:
-      - predicate: HasQuest
+      - predicate: 1
         parameters:
         - Find a food to eat together
+        - 
         negate: 1
 --- !u!114 &3432578330678249356
 MonoBehaviour:

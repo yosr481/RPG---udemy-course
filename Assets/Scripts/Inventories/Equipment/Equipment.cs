@@ -58,9 +58,9 @@ namespace RPG.Inventories
 
             EquipmentUpdated?.Invoke();
         }
-        public bool? Evaluate(string predicate, string[] parameters)
+        public bool? Evaluate(EPredicate predicate, string[] parameters)
         {
-            if (predicate == "HasItemEquipped")
+            if (predicate == EPredicate.HasItemEquipped)
             {
                 return equippedItems.Values.Any(item => item.GetItemID() == parameters[0]);
             }

@@ -110,16 +110,14 @@ namespace RPG.Stats
 		{
 			assignedPoints = new Dictionary<Trait, int>((IDictionary<Trait, int>)state);
 		}
-		public bool? Evaluate(string predicate, string[] parameters)
+		public bool? Evaluate(EPredicate predicate, string[] parameters)
 		{
-			switch (predicate)
+			if (predicate == EPredicate.MinimumTrait)
 			{
-				case "MinimumTrait":
-					if (Enum.TryParse<Trait>(parameters[0], out var trait))
-					{
-						return GetPoints(trait) >= int.Parse(parameters[1]);
-					}
-					break;
+				if (Enum.TryParse(parameters[0], out Trait trait))
+				{
+					return GetPoints(trait) >= Int32.Parse(parameters[1]);
+				} 
 			}
 			return null;
 		}
