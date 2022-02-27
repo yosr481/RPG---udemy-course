@@ -12,6 +12,13 @@ namespace RPG.Stats.Editor
 	{
 		private Progression selected;
 		
+		private List<string> characterTabs = new List<string>();
+		private List<string> statTabs = new List<string>();
+		private int characterTabSelected = -1;
+		private int statTabSelected = -1;
+		private CharacterClass selectedCharacter;
+		private Stat selectedStat;
+		
 		[MenuItem("Window/Progression Window")]
 		private static void ShowWindow()
 		{
@@ -20,7 +27,7 @@ namespace RPG.Stats.Editor
 			window.Show();
 		}
 
-		private static void ShowEditorWindow(Progression candidate)
+		public static void ShowEditorWindow(Progression candidate)
 		{
 			ProgressionEditorWindow window = GetWindow(typeof(ProgressionEditorWindow), false, "Progression Window") as ProgressionEditorWindow;
 			if (candidate)
@@ -34,6 +41,8 @@ namespace RPG.Stats.Editor
 			var candidate = EditorUtility.InstanceIDToObject(Selection.activeInstanceID) as Progression;
 			if(candidate == null) return;
 			selected = candidate;
+			characterTabSelected = -1;
+			statTabSelected = -1;
 			Repaint();
 		}
 		
@@ -48,60 +57,70 @@ namespace RPG.Stats.Editor
 			}
 			return false;
 		}
-		private string[] tabs;
-		private int tabSelected = -1;
-		private CharacterClass selectedCharacter;
-		
-		private void Awake()
+
+		private void OnEnable()
 		{
-			tabs = Enum.GetNames(typeof(CharacterClass));
+			characterTabSelected = -1;
+			statTabSelected = -1;
+			characterTabs = Enum.GetNames(typeof(CharacterClass)).ToList();
+			statTabs = Enum.GetNames(typeof(Stat)).ToList();
 		}
 
 		private void OnGUI()
 		{
 			EditorGUILayout.BeginVertical("Box");
-			tabSelected = GUILayout.Toolbar(tabSelected, tabs);
+			characterTabSelected = GUILayout.Toolbar(characterTabSelected, characterTabs.ToArray());
+			statTabSelected = GUILayout.Toolbar(statTabSelected, statTabs.ToArray());
 			EditorGUILayout.EndVertical();
-
-			if (tabSelected > -1)
+			
+			if (characterTabSelected > -1 && statTabSelected > -1)
 			{
-				selectedCharacter = (CharacterClass)Enum.Parse(typeof(CharacterClass), tabs[tabSelected]);
+				selectedCharacter = selected.GetCharacterClassByName(characterTabs[characterTabSelected]);
+				selectedStat = (Stat)Enum.Parse(typeof(Stat), statTabs[statTabSelected]);
+				
 				CreatTableOfLevels();
+					
 			}
 		}
 
 		Vector2 scrollPosition;
 		void CreatTableOfLevels()
 		{
-			int stats = selected.GetStatsNumberForCharacter(selectedCharacter);
-			string[] statNames = Enum.GetNames(typeof(Stat));
-
-			scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+			int levels = selected.GetLevels(selectedStat, selectedCharacter);
 			
+			scrollPosition = GUILayout.BeginScrollView(scrollPosition);
 			GUILayout.BeginVertical("Box");
 			
-			for (int y = 0; y < stats; y++)
+			if (levels > 0)
 			{
-				Stat currentStat = (Stat)Enum.Parse(typeof(Stat), statNames[y]);
-				int levels = selected.GetLevels(currentStat, selectedCharacter);
-				
-				GUILayout.BeginHorizontal();
-
-				if (levels > 0)
+				for (int x = 0; x < levels; x++)
 				{
-					EditorGUILayout.LabelField(statNames[y],GUILayout.ExpandWidth(false));
-			
-					for (int x = 0; x < levels; x++)
-					{
-						EditorGUILayout.FloatField(selected.GetStat(currentStat, selectedCharacter, x + 1),GUILayout.ExpandWidth(false),GUILayout.MaxWidth(50));
-					}
+				
+					selected.SetStat(EditorGUILayout.FloatField($"Level {x + 1}",selected.GetStat(
+								selectedStat, selectedCharacter, x + 1)
+							,GUILayout.MaxWidth(250)),
+							selectedCharacter,
+							selectedStat, x);
 				}
-			
-				GUILayout.EndHorizontal();
 			}
 			
-			GUILayout.EndVertical();
+			GUILayout.BeginHorizontal();
+			if (GUILayout.Button(" + Add Level", GUILayout.ExpandWidth(false)))
+			{
+				selected.AddLevel(selectedCharacter, selectedStat);
+			}
+			if (levels > 0)
+			{
+				if (GUILayout.Button(" - Delete Level", GUILayout.ExpandWidth(false)))
+				{
+					selected.RemoveLevel(selectedCharacter, selectedStat, levels - 1);
+				}
+			}
 			
+			GUILayout.EndHorizontal();
+			
+			
+			GUILayout.EndVertical();
 			GUILayout.EndScrollView();
 		}
 	}

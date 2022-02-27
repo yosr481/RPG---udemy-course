@@ -138,15 +138,15 @@ namespace RPG.Inventories
         }
         
         // Setters
-        public void SetItemID(string newItemID)
+        private void SetItemID(string newItemID)
         {
             if(itemID==newItemID) return;
             SetUndo("Change ItemID");
             itemID=newItemID;
             Dirty();
         }
-        
-        public void SetDisplayName(string newDisplayName)
+
+        private void SetDisplayName(string newDisplayName)
         {
             if (newDisplayName == displayName) return;
             SetUndo("Change Display Name");
@@ -154,7 +154,7 @@ namespace RPG.Inventories
             Dirty();
         }
 
-        public void SetDescription(string newDescription)
+        private void SetDescription(string newDescription)
         {
             if (newDescription == description) return;
             SetUndo("Change Description");
@@ -162,7 +162,7 @@ namespace RPG.Inventories
             Dirty();
         }
 
-        public void SetIcon(Sprite newIcon)
+        private void SetIcon(Sprite newIcon)
         {
             if (icon == newIcon) return;
             SetUndo("Change Icon");
@@ -170,7 +170,7 @@ namespace RPG.Inventories
             Dirty();
         }
 
-        public void SetPickup(Pickup newPickup)
+        private void SetPickup(Pickup newPickup)
         {
             if (pickup == newPickup) return;
             SetUndo("Change Pickup");
@@ -178,7 +178,7 @@ namespace RPG.Inventories
             Dirty();
         }
 
-        public void SetStackable(bool newStackable)
+        private void SetStackable(bool newStackable)
         {
             if (stackable == newStackable) return;
             SetUndo(stackable?"Set Not Stackable": "Set Stackable");
@@ -187,17 +187,17 @@ namespace RPG.Inventories
         }
         
         // Helper functions
-        public void SetUndo(string message)
+        protected void SetUndo(string message)
         {
             Undo.RecordObject(this, message);
         }
 
-        public void Dirty()
+        protected void Dirty()
         {
             EditorUtility.SetDirty(this);
         }
 
-        public bool FloatEquals(float value1, float value2)
+        protected bool FloatEquals(float value1, float value2)
         {
             return Math.Abs(value1 - value2) < 0.001f;
         }
