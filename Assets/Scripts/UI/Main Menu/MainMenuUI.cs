@@ -1,4 +1,4 @@
-using GameDevTV.Utils;
+using RPG.Utils;
 using RPG.SceneManagment;
 using TMPro;
 using UnityEngine;

@@ -96,7 +96,7 @@ namespace RPG.Core.Editor
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
 			SerializedProperty predicate = property.FindPropertyRelative("predicate");
-			float propHeight = EditorGUI.GetPropertyHeight(predicate);
+			float propHeight = EditorGUIUtility.singleLineHeight;
 			EPredicate selectedPredicate = (EPredicate)predicate.enumValueIndex;
 			
 			switch (selectedPredicate)

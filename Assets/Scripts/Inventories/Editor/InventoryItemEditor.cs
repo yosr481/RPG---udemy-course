@@ -58,9 +58,9 @@ namespace RPG.Inventories.Editor
 		private Vector2 scrollPosition;
 		private void DrawInspector()
 		{
-			scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+			scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 			selected.DrawCustomInspector();
-			GUILayout.EndScrollView();
+			EditorGUILayout.EndScrollView();
 		}
 	}
 }

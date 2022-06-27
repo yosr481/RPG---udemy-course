@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace RPG.Abilities
 {
+	[Serializable]
 	public abstract class FilterStrategy : ScriptableObject
 	{
 		public abstract IEnumerable<GameObject> Filter(IEnumerable<GameObject> objectsToFilter);

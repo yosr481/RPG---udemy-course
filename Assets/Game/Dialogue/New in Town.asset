@@ -98,7 +98,7 @@ MonoBehaviour:
   - 7126e64c-28b7-4914-a665-c9d28e3bccc6
   rect:
     serializedVersion: 2
-    x: 325
+    x: 326
     y: 208
     width: 200
     height: 85
@@ -195,7 +195,7 @@ MonoBehaviour:
       - predicate: 1
         parameters:
         - Find a food to eat together
-        - 50
+        - 
         negate: 0
 --- !u!114 &11400000
 MonoBehaviour:

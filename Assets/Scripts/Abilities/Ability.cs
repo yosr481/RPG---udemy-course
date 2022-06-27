@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
-using Cinemachine.Editor;
 using RPG.Abilities.Effects;
 using RPG.Abilities.Filters;
 using RPG.Attributes;
 using RPG.Core;
 using RPG.Inventories;
-using RPG.Stats;
 using UnityEditor;
 using UnityEngine;
 
@@ -96,7 +92,7 @@ namespace RPG.Abilities
 private void AddFilterStrategies(List<FilterStrategy> strategiesList)
 		{
 			SetUndo("Add Filter Strategies");
-			strategiesList?.Add(CreateInstance<TagFilter>());
+			strategiesList?.Add(CreateInstance<FilterStrategy>());
 			Dirty();
 		}
 		
@@ -151,7 +147,7 @@ private void AddFilterStrategies(List<FilterStrategy> strategiesList)
 		private void AddEffectStrategies(List<EffectStrategy> strategiesList)
 		{
 			SetUndo("Add Effect Strategies");
-			strategiesList?.Add(CreateInstance<HealthEffect>());
+			strategiesList?.Add(CreateInstance<EffectStrategy>());
 			Dirty();
 		}
 				
@@ -241,6 +237,7 @@ private void AddFilterStrategies(List<FilterStrategy> strategiesList)
 			{
 				fontStyle = FontStyle.Italic
 			};
+			EditorGUILayout.EndVertical();
 			
 			EditorGUILayout.BeginVertical(contentStyle);
 			drawFilters = EditorGUILayout.Foldout(drawFilters, "Filter Strategies", true, strategiesFoldoutStyle);

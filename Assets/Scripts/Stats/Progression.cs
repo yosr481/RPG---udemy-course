@@ -82,12 +82,6 @@ namespace RPG.Stats
             return lookupTable[character][stat].Count <= 0 ? 0 : lookupTable[character][stat].Count;
         }
 
-        public int GetStatsNumberForCharacter(CharacterClass characterClass)
-        {
-            BuildLookup();
-            return lookupTable[characterClass].Count;
-        }
-
         private void BuildLookup()
         {
             if (lookupTable != null) return;
